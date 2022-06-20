@@ -1,3 +1,4 @@
 plotly
 openpyxl
 matplotlib
+scipy
