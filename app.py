@@ -80,8 +80,6 @@ import matplotlib.pyplot as plt
 import scipy.fft
 
 fig = go.Figure()
-f=np.asarray(f)
-A=np.asarray(A)
 ff=[]
 AA=[]
 for r in range (1,df2.shape[1]):
