@@ -83,7 +83,7 @@ fig = go.Figure()
 f=np.asarray(f)
 A=np.asarray(A)
 ff=[]
-AA=[
+AA=[]
 for r in range (1,df2.shape[1]):
   f=[]
   A=[]
