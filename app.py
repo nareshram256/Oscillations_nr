@@ -108,7 +108,7 @@ for r in range (1,df2.shape[1]):
   fig.add_trace(go.Scatter(x=s, y=A,
                         mode='lines+text',yaxis='y1',
                         text=f,
-                        name=str(na[r])))
+                        name=str(df2.columns[r])))
   #fig.add_trace(go.Scatter(x=s, y=f,mode='markers',yaxis='y2',))
 fig.update_layout(
     autosize=True,
@@ -141,7 +141,7 @@ for k in range (10):
   df4['amp']=AA[:,k]
 
 
-  fig.add_trace(go.Scatter(x=df2.columns[2:], y=df4['amp'],
+  fig.add_trace(go.Scatter(x=df2.columns[1:], y=df4['amp'],
                           mode='lines+text',yaxis='y1',
                           text=ff[:,k],
                           name='sample' +str(k)))
