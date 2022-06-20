@@ -17,7 +17,7 @@ na=[]
 
 ll=np.asarray(['Voltage','Current','Power'])
 option = st.selectbox(
-     'Which plot you like?',
+     'Which Oscillations plot you like?',
      ll)
 
 #st.write('You selected:', option)
@@ -82,8 +82,8 @@ import scipy.fft
 fig = go.Figure()
 f=np.asarray(f)
 A=np.asarray(A)
-ff.append(f)
-AA.append(A)
+ff=[]
+AA=[
 for r in range (1,df2.shape[1]):
   f=[]
   A=[]
@@ -101,9 +101,12 @@ for r in range (1,df2.shape[1]):
       A.append(df3[df3['amp']==df3['amp'].max()]['amp'].values[0])
       s.append(k*df3.shape[0]*0.04)
     else:
-     f.append(0)
-     A.append(0)
-     
+      f.append(0)
+      A.append(0)
+   f=np.asaray(f)
+   A=np.asarray(A)
+   ff.append(f)
+   AA.append(A)
   fig.add_trace(go.Scatter(x=s, y=A,
                         mode='lines+text',yaxis='y1',
                         text=f,
