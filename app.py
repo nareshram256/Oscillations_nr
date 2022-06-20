@@ -101,10 +101,10 @@ for r in range (1,df2.shape[1]):
     else:
       f.append(0)
       A.append(0)
-   f=np.asarray(f)
-   A=np.asarray(A)
-   ff.append(f)
-   AA.append(A)
+  f=np.asarray(f)
+  A=np.asarray(A)
+  ff.append(f)
+  AA.append(A)
   fig.add_trace(go.Scatter(x=s, y=A,
                         mode='lines+text',yaxis='y1',
                         text=f,
