@@ -114,7 +114,7 @@ if len(files)>0:
       f=[]
       A=[]
       s=[]
-      for k in range (int(df2.shape[0]/int(sample))):
+      for k in range (int(df2.shape[0]/int(sample))-1):
         data1=df2.iloc[int(sample)*k:int(sample)*(k+1),r].values
         A_signal_fft = scipy.fft.fft(data1)
         A_signal_fft=np.sqrt(A_signal_fft.real**2+A_signal_fft.imag**2)
@@ -125,7 +125,7 @@ if len(files)>0:
         if(len(df3[df3['amp']==df3['amp'].max()]['freq'].values)>0 and df3[df3['amp']==df3['amp'].max()]['freq'].values[0] >0 and df3[df3['amp']==df3['amp'].max()]['freq'].values[0]<1):
           f.append(np.round(df3[df3['amp']==df3['amp'].max()]['freq'].values[0],2)) 
           A.append(df3[df3['amp']==df3['amp'].max()]['amp'].values[0])
-          st.write(int(sample)*(k+1),df2["time"])
+          #st.write(int(sample)*(k+1),df2["time"])
           s.append(df2.iloc[int(sample)*(k+1),0])
         else:
           f.append(0)
