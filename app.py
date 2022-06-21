@@ -127,6 +127,7 @@ if len(files)>0:
         else:
           f.append(0)
           A.append(0)
+          s.append(df2.iloc[int(df2.shape[0]*int(sample))*k:int(df2.shape[0]*int(sample))*(k+1),0])
       f=np.asarray(f)
       A=np.asarray(A)
       ff.append(f)
