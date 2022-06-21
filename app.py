@@ -42,7 +42,7 @@ for spectra in spectras:
 files = sorted(glob(dest+'*.xlsx'))
 
 Data=pd.read_excel(files[0],engine='openpyxl')
-ll=np.asarray(Data.columns[2:])
+ll=np.asarray(Data.columns[0:])
 option = st.selectbox(
 'Which Oscillations plot you like?',
  ll)
