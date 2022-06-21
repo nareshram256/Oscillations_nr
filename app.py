@@ -40,13 +40,16 @@ for spectra in spectras:
 
 #st.write('you selected',np.argwhere(ll==option)[0])
 files = sorted(glob(dest+'*.xlsx'))
-if len(files)>0:
-    for fil in files:
-        Data=pd.read_excel(fil,engine='openpyxl')
-        ll=np.asarray(Data.columns[1:])
+
+Data=pd.read_excel(files[0],engine='openpyxl')
+ll=np.asarray(Data.columns[2:])
         option = st.selectbox(
         'Which Oscillations plot you like?',
             ll)
+if len(files)>0:
+    for fil in files:
+        Data=pd.read_excel(fil,engine='openpyxl')
+        
 
         try:
             #st.write(Data.columns[int(np.argwhere(ll==option))*2+2])
