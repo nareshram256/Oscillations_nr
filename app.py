@@ -20,7 +20,7 @@ import warnings
 warnings.simplefilter("ignore")
 Volt=[]
 na=[]
-'''
+
 spectras = st.file_uploader("upload file", type={"xlsx"},accept_multiple_files = True)
 for spectra in spectras:
     if spectra is not None:
@@ -33,7 +33,7 @@ for spectra in spectras:
     else:
         st.write("Upload excel files")
 
-'''
+
         
 ll=np.asarray(['Voltage','Current','Power'])
 option = st.selectbox(
