@@ -159,13 +159,13 @@ if len(files)>0:
     fig = go.Figure()
 
     for k in range (10):
-      df4['freq']=ff[:,k]
-      df4['amp']=AA[:,k]
+      df4['freq']=ff[:,k*28]
+      df4['amp']=AA[:,k*28]
 
 
       fig.add_trace(go.Scatter(x=df2.columns[1:], y=df4['amp'],
                               mode='lines+text',yaxis='y1',
-                              text=ff[:,k],
+                              text=ff[:,k*28],
                               name='sample' +str(k)))
         #fig.add_trace(go.Scatter(x=s, y=f,mode='markers',yaxis='y2',))
     fig.update_layout(
