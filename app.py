@@ -53,7 +53,7 @@ if len(files)>0:
 
         try:
             #st.write(Data.columns[int(np.argwhere(ll==option))*2+2])
-            Volt.append(Data[ll])
+            Volt.append(Data[ll].values)
             na.append(Data.iloc[0][1])
         except:
             continue
