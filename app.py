@@ -125,7 +125,7 @@ if len(files)>0:
         if(len(df3[df3['amp']==df3['amp'].max()]['freq'].values)>0 and df3[df3['amp']==df3['amp'].max()]['freq'].values[0] >0 and df3[df3['amp']==df3['amp'].max()]['freq'].values[0]<1):
           f.append(np.round(df3[df3['amp']==df3['amp'].max()]['freq'].values[0],2)) 
           A.append(df3[df3['amp']==df3['amp'].max()]['amp'].values[0])
-          st.write(df2.loc[int(sample)*(k+1),0])
+          #st.write(df2.loc[int(sample)*(k+1),0])
           s.append(df2.iloc[int(sample)*(k+1),0])
         else:
           f.append(0)
