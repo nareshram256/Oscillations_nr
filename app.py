@@ -129,13 +129,13 @@ if len(files)>0:
         else:
           f.append(0)
           A.append(0)
-          s.append(df2.iloc[int(sample)*k:int(sample)*(k+1),0])
+          s.append(df2.["time"][int(sample)*(k+1)]
       f=np.asarray(f)
       A=np.asarray(A)
       ff.append(f)
       AA.append(A)
       s=np.asarray(s)
-      fig.add_trace(go.Scatter(x=df2["time"], y=A,
+      fig.add_trace(go.Scatter(x=s, y=A,
                             mode='lines+text',yaxis='y1',
                             text=f,
                             name=str(df2.columns[r])))
