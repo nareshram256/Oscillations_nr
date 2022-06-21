@@ -104,22 +104,26 @@ if len(files)>0:
     fig = go.Figure()
     ff=[]
     AA=[]
+    sample= st.select_slider(
+     'Select sample length',
+     options=[100, 200, 400, 800, 1000, 1200, 1400])
+    st.write('chosen sample length is', sample)
     for r in range (1,df2.shape[1]):
       f=[]
       A=[]
       s=[]
-      for k in range (10*3+2):
-        data1=df2.iloc[int(df2.shape[0]*0.1*0.3)*k:int(df2.shape[0]*0.1*0.3)*(k+1),r].values
+      for k in range (int(df2.shape[0]/int(sample))):
+        data1=df2.iloc[int(df2.shape[0]*int(sample))*k:int(df2.shape[0]*int(sample))*(k+1),r].values
         A_signal_fft = scipy.fft.fft(data1)
         A_signal_fft=np.sqrt(A_signal_fft.real**2+A_signal_fft.imag**2)
-        frequencies = scipy.fft.fftfreq(int(df2.shape[0]*0.1*0.3), 1/25)
+        frequencies = scipy.fft.fftfreq(int(df2.shape[0]*int(sample)), 1/25)
         df3 = pd.DataFrame()
         df3['freq']=np.abs(frequencies[1:])
-        df3['amp']=np.abs(A_signal_fft)[1:]/int(df2.shape[0]*0.1*0.3)
+        df3['amp']=np.abs(A_signal_fft)[1:]/int(df2.shape[0]*int(sample))
         if(len(df3[df3['amp']==df3['amp'].max()]['freq'].values)>0 and df3[df3['amp']==df3['amp'].max()]['freq'].values[0] >0 and df3[df3['amp']==df3['amp'].max()]['freq'].values[0]<1):
           f.append(np.round(df3[df3['amp']==df3['amp'].max()]['freq'].values[0],2)) 
           A.append(df3[df3['amp']==df3['amp'].max()]['amp'].values[0])
-          s.append(k*df3.shape[0]*0.04)
+          s.append(df2.iloc[int(df2.shape[0]*int(sample))*k:int(df2.shape[0]*int(sample))*(k+1),0])
         else:
           f.append(0)
           A.append(0)
