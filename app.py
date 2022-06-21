@@ -129,7 +129,8 @@ if len(files)>0:
         else:
           f.append(0)
           A.append(0)
-          s.append(df2["time"][int(sample)*(k+1)])
+          st.write(df2.loc[int(sample)*(k+1),0])
+          s.append(df2.loc[int(sample)*(k+1),0])
       f=np.asarray(f)
       A=np.asarray(A)
       ff.append(f)
