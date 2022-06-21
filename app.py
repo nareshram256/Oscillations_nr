@@ -57,7 +57,7 @@ if len(files)>0:
         except:
             continue
 
-    st.write(Volt)
+    #st.write(Volt)
     import numpy as np
     df2 = pd.DataFrame()
     df2["time"] = pd.to_datetime(Data[Data.columns[0]])
