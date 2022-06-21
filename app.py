@@ -51,7 +51,7 @@ if len(files)>0:
         Data=pd.read_excel(fil,engine='openpyxl')
         try:
             st.write(Data.columns[int(np.argwhere(ll==option))])
-            st.write(Data[ll].values)
+            #st.write(Data[ll].values)
             Volt.append(Data[ll].values)
             na.append(Data.iloc[0][1])
         except:
