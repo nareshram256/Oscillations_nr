@@ -35,10 +35,6 @@ for spectra in spectras:
 
 
         
-ll=np.asarray(['Voltage','Current','Power'])
-option = st.selectbox(
-     'Which Oscillations plot you like?',
-     ll)
 
 #st.write('You selected:', option)
 
@@ -47,10 +43,14 @@ files = sorted(glob(dest+'*.xlsx'))
 if len(files)>0:
     for fil in files:
         Data=pd.read_excel(fil,engine='openpyxl')
+        ll=np.asarray(Data.columns[1:])
+        option = st.selectbox(
+        'Which Oscillations plot you like?',
+            ll)
 
         try:
             #st.write(Data.columns[int(np.argwhere(ll==option))*2+2])
-            Volt.append(Data[Data.columns[int(np.argwhere(ll==option))*2+2]])
+            Volt.append(Data[ll])
             na.append(Data.iloc[0][1])
         except:
             continue
@@ -132,7 +132,7 @@ if len(files)>0:
       A=np.asarray(A)
       ff.append(f)
       AA.append(A)
-      fig.add_trace(go.Scatter(x=s, y=A,
+      fig.add_trace(go.Scatter(x=pd.to_datetime(s), y=A,
                             mode='lines+text',yaxis='y1',
                             text=f,
                             name=str(df2.columns[r])))
