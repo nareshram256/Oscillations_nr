@@ -135,7 +135,7 @@ if len(files)>0:
       ff.append(f)
       AA.append(A)
       s=np.asarray(s)
-      fig.add_trace(go.Scatter(x=pd.to_datetime(s), y=A,
+      fig.add_trace(go.Scatter(x=df2["time"], y=A,
                             mode='lines+text',yaxis='y1',
                             text=f,
                             name=str(df2.columns[r])))
