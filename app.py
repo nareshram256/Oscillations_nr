@@ -43,9 +43,9 @@ files = sorted(glob(dest+'*.xlsx'))
 
 Data=pd.read_excel(files[0],engine='openpyxl')
 ll=np.asarray(Data.columns[2:])
-        option = st.selectbox(
-        'Which Oscillations plot you like?',
-            ll)
+option = st.selectbox(
+'Which Oscillations plot you like?',
+ ll)
 if len(files)>0:
     for fil in files:
         Data=pd.read_excel(fil,engine='openpyxl')
