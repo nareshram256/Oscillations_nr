@@ -57,11 +57,10 @@ if len(files)>0:
         except:
             continue
 
-
+    st.write(Volt)
     import numpy as np
     df2 = pd.DataFrame()
     df2["time"] = pd.to_datetime(Data[Data.columns[0]])
-
     #missing_range = [(400,430),(500,700),(1300,1420),(2100,2230)]
     #for start,end in missing_range:
     #    df2.iloc[start:end,1] = np.nan
