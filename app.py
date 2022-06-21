@@ -113,21 +113,21 @@ if len(files)>0:
       A=[]
       s=[]
       for k in range (int(df2.shape[0]/int(sample))):
-        data1=df2.iloc[int(df2.shape[0]*int(sample))*k:int(df2.shape[0]*int(sample))*(k+1),r].values
+        data1=df2.iloc[int(sample)*k:int(sample)*(k+1),r].values
         A_signal_fft = scipy.fft.fft(data1)
         A_signal_fft=np.sqrt(A_signal_fft.real**2+A_signal_fft.imag**2)
-        frequencies = scipy.fft.fftfreq(int(df2.shape[0]*int(sample)), 1/25)
+        frequencies = scipy.fft.fftfreq(int(sample), 1/25)
         df3 = pd.DataFrame()
         df3['freq']=np.abs(frequencies[1:])
-        df3['amp']=np.abs(A_signal_fft)[1:]/int(df2.shape[0]*int(sample))
+        df3['amp']=np.abs(A_signal_fft)[1:]/int(sample)
         if(len(df3[df3['amp']==df3['amp'].max()]['freq'].values)>0 and df3[df3['amp']==df3['amp'].max()]['freq'].values[0] >0 and df3[df3['amp']==df3['amp'].max()]['freq'].values[0]<1):
           f.append(np.round(df3[df3['amp']==df3['amp'].max()]['freq'].values[0],2)) 
           A.append(df3[df3['amp']==df3['amp'].max()]['amp'].values[0])
-          s.append(df2.iloc[int(df2.shape[0]*int(sample))*k:int(df2.shape[0]*int(sample))*(k+1),0])
+          s.append(df2.iloc[int(sample)*k:int(sample)*(k+1),0])
         else:
           f.append(0)
           A.append(0)
-          s.append(df2.iloc[int(df2.shape[0]*int(sample))*k:int(df2.shape[0]*int(sample))*(k+1),0])
+          s.append(df2.iloc[int(sample)*k:int(sample)*(k+1),0])
       f=np.asarray(f)
       A=np.asarray(A)
       ff.append(f)
@@ -146,7 +146,7 @@ if len(files)>0:
             titlefont=dict(size=30),),
         #yaxis2=dict(title='Freq',overlaying='y',side='right',titlefont=dict(size=30),),
         xaxis=dict(
-            title_text="Time (Sec)",
+            title_text="Time ",
             titlefont=dict(size=30),
 
         ),
