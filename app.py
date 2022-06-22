@@ -6,7 +6,7 @@ import numpy as np
 from io import BytesIO
 from datetime import datetime, timedelta
 import os
-st.title("Oscillations Freq. Est. tool")
+st.title("Oscillations Frequency  Est.  Tool")
 st.sidebar.latex(r'''
      Y(t)=\sum_{k=0}^{n-1} c^k e^{(a[k]*t+ib[k]*t)}
  ''')
@@ -81,7 +81,14 @@ warnings.simplefilter("ignore")
 
 
 check=st.number_input('1: default/June data    \t    2: Custom Upload')
-if(check==2):   
+if(check==2):
+    try:
+        files = sorted(glob(dest+'*.xlsx'))
+        if len(files)>0:
+            for fil in files:
+                os.remove(fil)
+    except:
+        pass
     spectras = st.file_uploader("upload file", type={"xlsx"},accept_multiple_files = True)
     for spectra in spectras:
         if spectra is not None:
