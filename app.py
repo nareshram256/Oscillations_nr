@@ -69,24 +69,30 @@ dest1="databse/"
 June="old/"
 import pandas as pd
 from glob import glob
-if st.button('clear the data'):
-    files = sorted(glob(dest+'*.xlsx'))
-    if len(files)>0:
-        for fil in files:
-            os.remove(fil)
+#if st.button('clear the data'):
+#    files = sorted(glob(dest+'*.xlsx'))
+#    if len(files)>0:
+#        for fil in files:
+#            os.remove(fil)
 import warnings
 warnings.simplefilter("ignore")
 
+if st.button('clear June data and upload custom'):
+    spectras = st.file_uploader("upload file", type={"xlsx"},accept_multiple_files = True)
+    for spectra in spectras:
+        if spectra is not None:
+            with open(os.path.join(dest,str(spectra.name)),"wb") as f:
+                f.write((spectra).getbuffer())
+            with open(os.path.join(dest1,str(spectra.name)),"wb") as f:
+                f.write((spectra).getbuffer())    
+        else:
+            st.write("Upload excel files")
+    files = sorted(glob(dest+'*.xlsx'))
 
-spectras = st.file_uploader("upload file", type={"xlsx"},accept_multiple_files = True)
-for spectra in spectras:
-    if spectra is not None:
-        with open(os.path.join(dest,str(spectra.name)),"wb") as f:
-            f.write((spectra).getbuffer())
-        with open(os.path.join(dest1,str(spectra.name)),"wb") as f:
-            f.write((spectra).getbuffer())    
-    else:
-        st.write("Upload excel files")
+else:
+    files = sorted(glob(June+'*.xlsx'))
+    
+
 
 
         
@@ -94,10 +100,7 @@ for spectra in spectras:
 #st.write('You selected:', option)
 
 #st.write('you selected',np.argwhere(ll==option)[0])
-#files = sorted(glob(dest+'*.xlsx'))
 
-
-st.write(files)
 Volt=[]
 na=[]    
 if(len(files)>0):
@@ -108,7 +111,6 @@ if(len(files)>0):
      ll)
     for fil in files:
         Data=pd.read_excel(fil,engine='openpyxl')
-        st.write(Data)
         try:
             Volt.append(Data.iloc[:,int(np.argwhere(ll==option))+1])
             na.append(Data.iloc[0][1])
