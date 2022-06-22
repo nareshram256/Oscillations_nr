@@ -26,7 +26,7 @@ for spectra in spectras:
     if spectra is not None:
         with open(os.path.join(dest,str(spectra.name)),"wb") as f:
             f.write((spectra).getbuffer())
-         with open(os.path.join(dest1,str(spectra.name)),"wb") as f:
+        with open(os.path.join(dest1,str(spectra.name)),"wb") as f:
             f.write((spectra).getbuffer())    
     else:
         st.write("Upload excel files")
