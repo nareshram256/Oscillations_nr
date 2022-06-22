@@ -202,8 +202,6 @@ if len(files)>0:
     st.header("plant wise plot")
     st.plotly_chart(fig)
     st.sidebar.button("Developped by NR LDC")
-    st.latex(r'''
-     a + ar + a r^2 + a r^3 + \cdots + a r^{n-1} =
-     \sum_{k=0}^{n-1} ar^k =
-     a \left(\frac{1-r^{n}}{1-r}\right)
+    st.sidebar.latex(r'''
+     Y(t)=\sum_{k=0}^{n-1} c^k e^(a[k]*t+ib[k]*t)
      ''')
