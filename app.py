@@ -120,8 +120,8 @@ if len(files)>0:
         data1=df2.iloc[int(sample)*k:int(sample)*(k+1),r].values
         A_signal_fft = scipy.fft.fft(data1)
         A_signal_fft=np.sqrt(A_signal_fft.real**2+A_signal_fft.imag**2)
-        frequencies = scipy.fft.fftfreq(int(sample), int(sample)/(25))
-        #st.write(len(A_signal_fft),len(frequencies))
+        frequencies = scipy.fft.fftfreq(int(sample), 1/(25))
+        st.write(np.max(A_signal_fft),np.max(frequencies))
         df3 = pd.DataFrame()
         df3['freq']=np.abs(frequencies[1:])
         df3['amp']=np.abs(A_signal_fft)[1:]/int(sample)
