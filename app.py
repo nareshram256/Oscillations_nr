@@ -91,6 +91,7 @@ if len(files)>0:
     st.header(option+" plot")
     st.plotly_chart(fig)
     #fig.show()
+    st.write(data2.describe())
     df2=df2.fillna(0)
     df2.to_csv(dest+"data2.csv", index=False)
     st.download_button(
@@ -129,7 +130,7 @@ if len(files)>0:
           A.append(df3[df3['amp']==df3['amp'].max()]['amp'].values[0])
           #st.write(int(sample)*(k+1),df2["time"])
           s.append(df2.iloc[int(sample)*(k+1),0])
-        elif:
+        else:
           f.append(0)
           A.append(0)
           s.append(df2.iloc[int(sample)*(k+1),0])
