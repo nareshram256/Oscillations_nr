@@ -6,7 +6,7 @@ import numpy as np
 from io import BytesIO
 from datetime import datetime, timedelta
 import os
-st.title("Oscillations Frequency Estimation tool")
+st.title("Oscillations Freq. Est. tool")
 st.sidebar.latex(r'''
      Y(t)=\sum_{k=0}^{n-1} c^k e^{(a[k]*t+ib[k]*t)}
  ''')
