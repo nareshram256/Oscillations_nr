@@ -201,7 +201,40 @@ if len(files)>0:
     fig.update_yaxes(automargin=True)
     st.header("plant wise plot")
     st.plotly_chart(fig)
-    st.sidebar.button("Developped by NR LDC")
+   
     st.sidebar.latex(r'''
-     Y(t)=\sum_{k=0}^{n-1} c^k e^(a[k]*t+ib[k]*t)
+     Y(t)=\sum_{k=0}^{n-1} c^k e^{(a[k]*t+ib[k]*t)}
      ''')
+    if st.button('custom data'):
+        modes = st.sidebar.number_input('insert number for modes')
+        c=[]
+        a=[]
+        b=[]
+        for run in range (int(modes)):
+            c.append(st.sidebar.number_input('insert number for c'))
+        for run in range (int(modes)):
+            a.append(st.sidebar.number_input('insert number for a'))
+        for run in range (int(modes)):
+            b.append(st.sidebar.number_input('insert number for b'))    
+    else:
+        modes=4
+        a=[-0.01,0.001,0,-0.01]
+        b=[0,0.3,0.4,0.2]
+        c=[1,0.2,0.1,0.01]
+    Y=[]
+    for n in range (3000):
+        A=0
+        for i in range (modes):
+            A+=c[i]*np.exp((a[i]*t+1j*b[i]*t))
+    Y.append(A)
+    df5=pd.DataFrame()
+    df5['tme']=np.arange(0,3000,1)
+    df5['amp']=np.asarray(Y).real
+    df5=df5.fillna(0)
+    st.sidebar.download_button(
+         label="Download custom data as CSV",
+         data=df5.to_csv().encode('utf-8'),
+         file_name='data.csv',
+         mime='text/csv',
+     )
+    st.sidebar.button("Developped by NR LDC")
