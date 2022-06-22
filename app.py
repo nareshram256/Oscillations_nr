@@ -110,6 +110,7 @@ if len(files)>0:
      'Select sample length',
      options=[100, 200, 400, 800, 1000, 1200, 1400])
     st.write('chosen sample length is', sample)
+    st.write("max frequency detected would be % Hz"%(25/options))
     for r in range (1,df2.shape[1]):
       f=[]
       A=[]
@@ -128,7 +129,7 @@ if len(files)>0:
           A.append(df3[df3['amp']==df3['amp'].max()]['amp'].values[0])
           #st.write(int(sample)*(k+1),df2["time"])
           s.append(df2.iloc[int(sample)*(k+1),0])
-        else:
+        elif:
           f.append(0)
           A.append(0)
           s.append(df2.iloc[int(sample)*(k+1),0])
