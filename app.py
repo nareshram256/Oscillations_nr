@@ -111,7 +111,7 @@ if len(files)>0:
      'Select sample length',
      options=[100, 200, 400, 800, 1000, 1200, 1400])
     st.write('chosen sample length is', sample)
-    st.write("max frequency detected would be % Hz"%(25/options))
+    st.write("max frequency detected would be %f Hz"%(25/options))
     for r in range (1,df2.shape[1]):
       f=[]
       A=[]
