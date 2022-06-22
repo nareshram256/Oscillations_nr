@@ -10,12 +10,11 @@ import os
 dest="oscfiles/"
 import pandas as pd
 from glob import glob
-'''
-files = sorted(glob(dest+'*.xlsx'))
-if len(files)>0:
-    for fil in files:
-        os.remove(fil)
-'''
+if st.button('clear the data'):
+    files = sorted(glob(dest+'*.xlsx'))
+    if len(files)>0:
+        for fil in files:
+            os.remove(fil)
 import warnings
 warnings.simplefilter("ignore")
 Volt=[]
@@ -24,12 +23,10 @@ na=[]
 spectras = st.file_uploader("upload file", type={"xlsx"},accept_multiple_files = True)
 for spectra in spectras:
     if spectra is not None:
-        #spectra_df = pd.read_csv(spectra)
-        #spectra_df=spectra_df.fillna(0)
-        #st.write(spectra)
-        #spectra_df.to_csv(dest+spectra).encode('utf-8')
         with open(os.path.join(dest,str(spectra.name)),"wb") as f:
             f.write((spectra).getbuffer())
+         with open(os.path.join(data,str(spectra.name)),"wb") as f:
+            f.write((spectra).getbuffer())    
     else:
         st.write("Upload excel files")
 
@@ -124,10 +121,12 @@ if len(files)>0:
         df3 = pd.DataFrame()
         df3['freq']=np.abs(frequencies[1:])
         df3['amp']=np.abs(A_signal_fft)[1:]/int(sample)
+        #st.write(df3[(df3['freq']>1/(int(sample)*0.04)) & (df3['freq']<1)]['amp'].max())
+        dummy=df3[(df3['freq']>1/(int(sample)*0.04)) & (df3['freq']<1)]['amp'].max()
         #if(len(df3[df3['amp']==df3['amp'].max()]['freq'].values)>0 and df3[df3['amp']==df3['amp'].max()]['freq'].values[0] >1/(int(sample)*0.04) and df3[df3['amp']==df3['amp'].max()]['freq'].values[0]<1):
-        if(len(df3[df3[df3['freq']>1/(int(sample)*0.04) & df3['freq']<1]['amp'].max()]['freq'].values)>0):
-          f.append(np.round(df3[df3[df3['freq']>1/(int(sample)*0.04) & df3['freq']<1]['amp'].max()]['freq'].values[0],2)) 
-          A.append(df3[df3[df3['freq']>1/(int(sample)*0.04) & df3['freq']<1]['amp'].max()]['amp'].values[0])
+        if(len(df3[df3['amp']==dummy]['freq'].values)>0):
+          f.append(np.round(df3[df3['amp']==dummy]['freq'].values[0],2)) 
+          A.append(dummy)
           #st.write(int(sample)*(k+1),df2["time"])
           s.append(df2.iloc[int(sample)*(k+1),0])
         else:
