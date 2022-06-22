@@ -91,7 +91,7 @@ if len(files)>0:
     st.header(option+" plot")
     st.plotly_chart(fig)
     #fig.show()
-    st.write(data2.describe())
+    st.write(df2.describe())
     df2=df2.fillna(0)
     df2.to_csv(dest+"data2.csv", index=False)
     st.download_button(
@@ -121,7 +121,7 @@ if len(files)>0:
         A_signal_fft = scipy.fft.fft(data1)
         A_signal_fft=np.sqrt(A_signal_fft.real**2+A_signal_fft.imag**2)
         frequencies = scipy.fft.fftfreq(int(sample), 1/25)
-        #st.write(frequencies)
+        st.write(len(A_signal_fft),len(frequencies))
         df3 = pd.DataFrame()
         df3['freq']=np.abs(frequencies[1:])
         df3['amp']=np.abs(A_signal_fft)[1:]/int(sample)
