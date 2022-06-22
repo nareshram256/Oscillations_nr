@@ -3,12 +3,70 @@ import pandas as pd
 import plotly.graph_objects as go
 from PIL import Image
 import numpy as np
-
+from io import BytesIO
+from datetime import datetime, timedelta
 import os
+st.title("Oscillations Frequency Estimation tool")
+st.sidebar.latex(r'''
+     Y(t)=\sum_{k=0}^{n-1} c^k e^{(a[k]*t+ib[k]*t)}
+ ''')
+if st.sidebar.button('custom data'):
+    modes = st.sidebar.number_input('insert number for modes')
+    c=[]
+    a=[]
+    b=[]
+    for run in range (int(modes)):
+        c.append(st.sidebar.number_input('insert number for c'))
+    for run in range (int(modes)):
+        a.append(st.sidebar.number_input('insert number for a'))
+    for run in range (int(modes)):
+        b.append(st.sidebar.number_input('insert number for b'))    
+else:
+    modes=3
+    a=[0,-0.0009,-0.005]
+    b=[0,0.2,0.35]
+    c=[1,0.4,0.2]
+#st.sidebar.write('a=',list(a))
+#st.sidebar.write(list(b))
+Y=[]
+q=[]
+datetime_object = datetime.now()
+for t in range (3000):
+    A=0
+    for i in range (modes):
+        A+=c[i]*np.exp((a[i]*t+1j*b[i]*t))
+    Y.append(A)
+    time_change = timedelta(seconds=0.04)
+    datetime_object=datetime_object+time_change
+    q.append(datetime_object)
+df5=pd.DataFrame()
+df5['tme']=np.asarray(q)
+df5['amp']=np.asarray(Y).real
+df5=df5.fillna(0)
+def to_excel(df):
+    output = BytesIO()
+    writer = pd.ExcelWriter(output, engine='xlsxwriter')
+    df.to_excel(writer, index=False, sheet_name='Sheet1')
+    workbook = writer.book
+    worksheet = writer.sheets['Sheet1']
+    format1 = workbook.add_format({'num_format': '0.00'}) 
+    worksheet.set_column('A:A', None, format1)  
+    writer.save()
+    processed_data = output.getvalue()
+    return processed_data
+df_xlsx = to_excel(df5)
+st.sidebar.download_button(
+     label="Download default oscillations data as xlsx",
+     data=df_xlsx,
+     file_name='df_eqn.xlsx',
+     mime='xlsx/csv',
+ )
+
 
 
 dest="oscfiles/"
 dest1="databse/"
+June="old/"
 import pandas as pd
 from glob import glob
 if st.button('clear the data'):
@@ -18,8 +76,7 @@ if st.button('clear the data'):
             os.remove(fil)
 import warnings
 warnings.simplefilter("ignore")
-Volt=[]
-na=[]
+
 
 spectras = st.file_uploader("upload file", type={"xlsx"},accept_multiple_files = True)
 for spectra in spectras:
@@ -37,32 +94,32 @@ for spectra in spectras:
 #st.write('You selected:', option)
 
 #st.write('you selected',np.argwhere(ll==option)[0])
-files = sorted(glob(dest+'*.xlsx'))
+#files = sorted(glob(dest+'*.xlsx'))
 
-Data=pd.read_excel(files[0],engine='openpyxl')
-ll=np.asarray(Data.columns[0:])
-option = st.selectbox(
-'Which Oscillations plot you like?',
- ll)
-if len(files)>0:
+
+st.write(files)
+Volt=[]
+na=[]    
+if(len(files)>0):
+    Data=pd.read_excel(files[0],engine='openpyxl')
+    ll=np.asarray(Data.columns[1:])
+    option = st.selectbox(
+    'Which Oscillations plot you like?',
+     ll)
     for fil in files:
         Data=pd.read_excel(fil,engine='openpyxl')
+        st.write(Data)
         try:
-            #st.write(Data[ll].values)
-            #Volt.append(Data[Data.columns[int(np.argwhere(ll==option))]])
-            Volt.append(Data.iloc[:,int(np.argwhere(ll==option))])
+            Volt.append(Data.iloc[:,int(np.argwhere(ll==option))+1])
             na.append(Data.iloc[0][1])
         except:
             continue
 
-    #st.write(Volt)
     import numpy as np
+    #st.write(len(Volt))
     df2 = pd.DataFrame()
     df2["time"] = pd.to_datetime(Data[Data.columns[0]])
-    #missing_range = [(400,430),(500,700),(1300,1420),(2100,2230)]
-    #for start,end in missing_range:
-    #    df2.iloc[start:end,1] = np.nan
-    #st.write(na)
+    
     import plotly.graph_objects as go
     fig = go.Figure()
     for r in range (0,len(Volt)):
@@ -202,39 +259,5 @@ if len(files)>0:
     st.header("plant wise plot")
     st.plotly_chart(fig)
    
-    st.sidebar.latex(r'''
-     Y(t)=\sum_{k=0}^{n-1} c^k e^{(a[k]*t+ib[k]*t)}
-     ''')
-    if st.button('custom data'):
-        modes = st.sidebar.number_input('insert number for modes')
-        c=[]
-        a=[]
-        b=[]
-        for run in range (int(modes)):
-            c.append(st.sidebar.number_input('insert number for c'))
-        for run in range (int(modes)):
-            a.append(st.sidebar.number_input('insert number for a'))
-        for run in range (int(modes)):
-            b.append(st.sidebar.number_input('insert number for b'))    
-    else:
-        modes=4
-        a=[-0.01,0.001,0,-0.01]
-        b=[0,0.3,0.4,0.2]
-        c=[1,0.2,0.1,0.01]
-    Y=[]
-    for n in range (3000):
-        A=0
-        for i in range (modes):
-            A+=c[i]*np.exp((a[i]*t+1j*b[i]*t))
-    Y.append(A)
-    df5=pd.DataFrame()
-    df5['tme']=np.arange(0,3000,1)
-    df5['amp']=np.asarray(Y).real
-    df5=df5.fillna(0)
-    st.sidebar.download_button(
-         label="Download custom data as CSV",
-         data=df5.to_csv().encode('utf-8'),
-         file_name='data.csv',
-         mime='text/csv',
-     )
-    st.sidebar.button("Developped by NR LDC")
+    
+    st.sidebar.text("Developped by NR LDC")
