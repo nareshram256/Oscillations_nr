@@ -89,6 +89,7 @@ if len(files)>0:
     st.header(option+" plot")
     st.plotly_chart(fig)
     #fig.show()
+    st.write(" Description of data ")
     st.write(df2.describe())
     df2=df2.fillna(0)
     df2.to_csv(dest+"data2.csv", index=False)
@@ -200,3 +201,4 @@ if len(files)>0:
     fig.update_yaxes(automargin=True)
     st.header("plant wise plot")
     st.plotly_chart(fig)
+    st.sidebar.button("Developped by NR LDC")
