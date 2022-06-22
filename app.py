@@ -121,9 +121,9 @@ if len(files)>0:
         frequencies = scipy.fft.fftfreq(int(sample), 1/25)
         st.write(frequencies)
         df3 = pd.DataFrame()
-        df3['freq']=np.abs(frequencies[2:])
-        df3['amp']=np.abs(A_signal_fft)[2:]/int(sample)
-        if(len(df3[df3['amp']==df3['amp'].max()]['freq'].values)>0 and df3[df3['amp']==df3['amp'].max()]['freq'].values[0] >0 and df3[df3['amp']==df3['amp'].max()]['freq'].values[0]<1):
+        df3['freq']=np.abs(frequencies[1:])
+        df3['amp']=np.abs(A_signal_fft)[1:]/int(sample)
+        if(len(df3[df3['amp']==df3['amp'].max()]['freq'].values)>0 and df3[df3['amp']==df3['amp'].max()]['freq'].values[0] >1/(int(sample)*0.04) and df3[df3['amp']==df3['amp'].max()]['freq'].values[0]<1):
           f.append(np.round(df3[df3['amp']==df3['amp'].max()]['freq'].values[0],2)) 
           A.append(df3[df3['amp']==df3['amp'].max()]['amp'].values[0])
           #st.write(int(sample)*(k+1),df2["time"])
