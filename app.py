@@ -111,7 +111,7 @@ if len(files)>0:
      'Select sample length',
      options=[100, 200, 400, 800, 1000, 1200, 1400])
     st.write('chosen sample length is', sample)
-    st.write("max frequency detected would be %f Hz"%(25/options))
+    #st.write("max frequency detected would be %f Hz"%(25/options))
     for r in range (1,df2.shape[1]):
       f=[]
       A=[]
@@ -120,7 +120,7 @@ if len(files)>0:
         data1=df2.iloc[int(sample)*k:int(sample)*(k+1),r].values
         A_signal_fft = scipy.fft.fft(data1)
         A_signal_fft=np.sqrt(A_signal_fft.real**2+A_signal_fft.imag**2)
-        frequencies = scipy.fft.fftfreq(int(sample), 1/25)
+        frequencies = scipy.fft.fftfreq(int(sample), 1/(25*int(sample)))
         st.write(len(A_signal_fft),len(frequencies))
         df3 = pd.DataFrame()
         df3['freq']=np.abs(frequencies[1:])
