@@ -188,8 +188,8 @@ try:
             #A_signal_fft=np.sqrt(A_signal_fft.real**2+A_signal_fft.imag**2)
             frequencies = scipy.fft.fftfreq(int(sample), 1/(25))
             df3 = pd.DataFrame()
-            df3['freq']=np.abs(frequencies[1:]/(2*3.14))
-            df3['amp']=np.abs(A_signal_fft)[1:]/int(sample)
+            df3['freq']=np.abs(frequencies[0:]/(2*3.14))
+            df3['amp']=np.abs(A_signal_fft)[0:]/int(sample)
             #st.write(df3[(df3['freq']>1/(int(sample)*0.04)) & (df3['freq']<1)]['amp'].max())
             dummy=df3[(df3['freq']>1/(int(sample)*0.04)) & (df3['freq']<1)]['amp'].max()
             #if(len(df3[df3['amp']==df3['amp'].max()]['freq'].values)>0 and df3[df3['amp']==df3['amp'].max()]['freq'].values[0] >1/(int(sample)*0.04) and df3[df3['amp']==df3['amp'].max()]['freq'].values[0]<1):
