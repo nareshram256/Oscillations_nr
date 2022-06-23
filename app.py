@@ -35,7 +35,7 @@ datetime_object = datetime.now()
 for t in range (3000):
     A=0
     for i in range (modes):
-        A+=c[i]*np.exp((a[i]*t/25+1j*b[i]*t/25))
+        A+=c[i]*np.exp((a[i]*t/25+1j*b[i]*2*3.14t/25))
     Y.append(np.abs(A))
     time_change = timedelta(seconds=0.04)
     datetime_object=datetime_object+time_change
