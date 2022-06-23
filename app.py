@@ -36,13 +36,13 @@ for t in range (3000):
     A=0
     for i in range (modes):
         A+=c[i]*np.exp((a[i]*t+1j*b[i]*t))
-    Y.append(A)
+    Y.append(np.abs(A))
     time_change = timedelta(seconds=0.04)
     datetime_object=datetime_object+time_change
     q.append(datetime_object)
 df5=pd.DataFrame()
 df5['tme']=np.asarray(q)
-df5['amp']=np.asarray(Y).real
+df5['amp']=np.asarray(Y)
 df5=df5.fillna(0)
 def to_excel(df):
     output = BytesIO()
