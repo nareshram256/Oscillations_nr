@@ -35,7 +35,7 @@ datetime_object = datetime.now()
 for t in range (3000):
     A=0
     for i in range (modes):
-        A+=c[i]*np.exp((a[i]*t+1j*b[i]*t))
+        A+=c[i]*np.exp((a[i]*t/25+1j*b[i]*t/25))
     Y.append(np.abs(A))
     time_change = timedelta(seconds=0.04)
     datetime_object=datetime_object+time_change
@@ -188,7 +188,7 @@ try:
             #A_signal_fft=np.sqrt(A_signal_fft.real**2+A_signal_fft.imag**2)
             frequencies = scipy.fft.fftfreq(int(sample), 1/(25))
             df3 = pd.DataFrame()
-            df3['freq']=np.abs(frequencies[1:])
+            df3['freq']=np.abs(frequencies[1:]/(2*3.14))
             df3['amp']=np.abs(A_signal_fft)[1:]/int(sample)
             #st.write(df3[(df3['freq']>1/(int(sample)*0.04)) & (df3['freq']<1)]['amp'].max())
             dummy=df3[(df3['freq']>1/(int(sample)*0.04)) & (df3['freq']<1)]['amp'].max()
