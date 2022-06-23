@@ -10,7 +10,7 @@ st.title("Oscillations Frequency  Est.  Tool")
 st.sidebar.latex(r'''
      Y(t)=\sum_{k=0}^{n-1} c^k e^{(a[k]*t+ib[k]*t)}
  ''')
-if st.sidebar.button('custom data'):
+if st.sidebar.number_input('insert 1 for custom'):
     modes = st.sidebar.number_input('insert number for modes')
     c=[]
     a=[]
@@ -35,7 +35,7 @@ datetime_object = datetime.now()
 for t in range (3000):
     A=0
     for i in range (modes):
-        A+=c[i]*np.exp((a[i]*t/25+1j*b[i]*2*3.14t/25))
+        A+=c[i]*np.exp((a[i]*t/25+1j*b[i]*2*3.14*t/25))
     Y.append(np.abs(A))
     time_change = timedelta(seconds=0.04)
     datetime_object=datetime_object+time_change
