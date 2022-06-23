@@ -190,7 +190,8 @@ try:
             df3 = pd.DataFrame()
             df3['freq']=np.abs(frequencies[0:]/(2*3.14))
             df3['amp']=np.abs(A_signal_fft)[0:]/int(sample)
-            st.write(df3.T)
+            if(k==0 or k==int(df2.shape[0]/int(sample))-2):
+               st.write(df3.T)
             #dummy=df3[(df3['freq']>1/(int(sample)*0.04)) & (df3['freq']<1)]['amp'].max()
             dummy=df3[(df3['freq']>1/(int(sample))) & (df3['freq']<1)]['amp'].max()
             #if(len(df3[df3['amp']==df3['amp'].max()]['freq'].values)>0 and df3[df3['amp']==df3['amp'].max()]['freq'].values[0] >1/(int(sample)*0.04) and df3[df3['amp']==df3['amp'].max()]['freq'].values[0]<1):
