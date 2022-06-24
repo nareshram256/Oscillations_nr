@@ -198,7 +198,7 @@ try:
           frequencies = scipy.fft.fftfreq(df2.shape[0], 1/(25))
           df3 = pd.DataFrame()
           df3['freq']=np.abs(frequencies)
-          df3['amp']=np.abs(A_signal_fft)/int(df2,shape[0])  
+          df3['amp']=np.abs(A_signal_fft)/int(df2.shape[0])  
           dummy1=df3[(df3['freq']>1/(int(df2.shape[0]))) & (df3['freq']<2)]['amp']
           dummy2=df3[(df3['freq']>1/(int(df2.shape[0]))) & (df3['freq']<2)]['freq']
           L_f.append(dummy1.values)
