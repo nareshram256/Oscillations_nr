@@ -250,7 +250,8 @@ try:
         fig = go.Figure()
         dfL = pd.DataFrame(L_f, columns = df2.columns[1:] )
         st.write(dfL)
-        fig.add_trace(go.Scatter(x=df3['freq'], y=dfL,
+        for r in range (1,len(df2.columns))
+            fig.add_trace(go.Scatter(x=df3['freq'], y=dfL[df2.columns[r]],
                                 mode='lines',yaxis='y1',
                                 name=str(df2.columns[r])))
         fig.update_layout(
