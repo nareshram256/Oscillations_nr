@@ -210,7 +210,7 @@ try:
           dummy2=df3[(df3['freq']>0) & (df3['freq']<2)]['freq']
           L_A.append(dummy1.values)
           L_f.append( df3['freq'].values)
-          L_ph.append(my_f)
+          L_ph.append(my_f*180/3.14)
           for k in range (int(df2.shape[0]/int(sample))-1):
             data1=df2.iloc[int(sample)*k:int(sample)*(k+1),r].values
             A_signal_fft = scipy.fft.fft(data1)
@@ -341,7 +341,7 @@ try:
             #width=1500,
             #height=800,
             yaxis=dict(
-                title_text="phase (radians)",
+                title_text="phase (degree)",
                 titlefont=dict(size=30),),
             #yaxis2=dict(title='Time',overlaying='y',side='right',titlefont=dict(size=30),),
             xaxis=dict(
