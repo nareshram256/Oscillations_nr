@@ -186,6 +186,10 @@ try:
         L_f=[]
         
         #st.write("max frequency detected would be %f Hz"%(25/options))
+        sample= st.select_slider(
+         'Select sample length',
+          options=[100, 200, 400, 800, 1000, 1200, 1400.1600,1800,2000,2200,2400,2600,2800])
+          st.write('chosen sample length is', sample)
         for r in range (1,df2.shape[1]):
           f=[]
           A=[]
@@ -200,10 +204,7 @@ try:
           #dummy1=df3[(df3['freq']>1/(int(df2.shape[0]))) & (df3['freq']<2)]['amp']
           #dummy2=df3[(df3['freq']>1/(int(df2.shape[0]))) & (df3['freq']<2)]['freq']
           #L_f.append(dummy1.values)
-          sample= st.select_slider(
-         'Select sample length',
-          options=[100, 200, 400, 800, 1000, 1200, 1400.1600,1800,2000,2200,2400,2600,2800])
-          st.write('chosen sample length is', sample)
+          
           for k in range (int(df2.shape[0]/int(sample))-1):
             data1=df2.iloc[int(sample)*k:int(sample)*(k+1),r].values
             A_signal_fft = scipy.fft.fft(data1)
