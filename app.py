@@ -178,11 +178,12 @@ try:
 
         import matplotlib.pyplot as plt
         import scipy.fft
-        L_A=[]
-        L_f=[]
+        
         fig = go.Figure()
         ff=[]
         AA=[]
+        L_A=[]
+        L_f=[]
         sample= st.select_slider(
          'Select sample length',
          options=[100, 200, 400, 800, 1000, 1200, 1400])
