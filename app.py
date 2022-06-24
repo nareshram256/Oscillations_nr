@@ -178,7 +178,8 @@ try:
 
         import matplotlib.pyplot as plt
         import scipy.fft
-
+        L_A=[]
+        L_f=[]
         fig = go.Figure()
         ff=[]
         AA=[]
@@ -187,8 +188,6 @@ try:
          options=[100, 200, 400, 800, 1000, 1200, 1400])
         st.write('chosen sample length is', sample)
         #st.write("max frequency detected would be %f Hz"%(25/options))
-        L_A=[]
-        L_f=[]
         for r in range (1,df2.shape[1]):
           f=[]
           A=[]
@@ -198,7 +197,7 @@ try:
           frequencies = scipy.fft.fftfreq(df2.shape[0], 1/(25))
           df3 = pd.DataFrame()
           df3['freq']=np.abs(frequencies)
-          df3['amp']=np.abs(A_signal_fft)/int(df2.shape[0])  
+          df3['amp']=np.abs(A_signal_fft) 
           st.write(df3.T)
           dummy1=df3[(df3['freq']>1/(int(df2.shape[0]))) & (df3['freq']<2)]['amp']
           dummy2=df3[(df3['freq']>1/(int(df2.shape[0]))) & (df3['freq']<2)]['freq']
@@ -210,7 +209,7 @@ try:
             frequencies = scipy.fft.fftfreq(int(sample), 1/(25))
             df3 = pd.DataFrame()
             df3['freq']=np.abs(frequencies[:])
-            df3['amp']=np.abs(A_signal_fft)[:]/int(sample)
+            df3['amp']=np.abs(A_signal_fft)[:]
             if(k==0 or k==int(df2.shape[0]/int(sample))-2):
                st.write(df2.columns[r]) 
                st.write(df3.T)
@@ -291,11 +290,10 @@ try:
         st.header("plant wise plot")
         st.plotly_chart(fig)
         
-        L_f=np.asarray(L_f)
+        
         #st.write(L_f.shape)
         fig = go.Figure()
-        #dfL = pd.DataFrame(L_f.T, columns = df2.columns[1:] )
-        #st.write(dfL)
+        L_f=np.asarray(L_f)
         for r in range (0,len(df2.columns)-1):
             fig.add_trace(go.Scatter(x=dummy2, y=L_f[r],
                                 mode='lines',yaxis='y1',
