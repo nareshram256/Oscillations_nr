@@ -332,7 +332,7 @@ try:
         fig = go.Figure()
         L_ph=np.asarray(L_ph)
         for r in range (0,len(df2.columns)-1):
-            fig.add_trace(go.Scatter(x=L_f[r], y=L_ph[r],
+            fig.add_trace(go.Scatter(x=df2["time"], y=L_ph[r],
                                 mode='lines',yaxis='y1',
                                 name=str(df2.columns[r+1])))
         fig.update_layout(
@@ -342,7 +342,7 @@ try:
             yaxis=dict(
                 title_text="phase (radians)",
                 titlefont=dict(size=30),),
-            #yaxis2=dict(title='Freq',overlaying='y',side='right',titlefont=dict(size=30),),
+            #yaxis2=dict(title='Time',overlaying='y',side='right',titlefont=dict(size=30),),
             xaxis=dict(
                 title_text="Freq ",
                 titlefont=dict(size=30),
