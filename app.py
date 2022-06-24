@@ -199,8 +199,8 @@ try:
             #A_signal_fft=np.sqrt(A_signal_fft.real**2+A_signal_fft.imag**2)
             frequencies = scipy.fft.fftfreq(int(sample), 1/(25))
             df3 = pd.DataFrame()
-            df3['freq']=np.abs(frequencies[1:])
-            df3['amp']=np.abs(A_signal_fft)[1:]/int(sample)
+            df3['freq']=np.abs(frequencies[:])
+            df3['amp']=np.abs(A_signal_fft)[:]/int(sample)
             L_f.append(df3['amp'].values)
             if(k==0 or k==int(df2.shape[0]/int(sample))-2):
                st.write(df2.columns[r]) 
