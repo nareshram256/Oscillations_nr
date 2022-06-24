@@ -189,7 +189,7 @@ try:
         sample= st.select_slider(
          'Select sample length',
           options=[100, 200, 400, 800, 1000, 1200, 1400.1600,1800,2000,2200,2400,2600,2800])
-          st.write('chosen sample length is', sample)
+        st.write('chosen sample length is', sample)
         for r in range (1,df2.shape[1]):
           f=[]
           A=[]
