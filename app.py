@@ -222,35 +222,10 @@ try:
           A=np.asarray(A)
           ff.append(f)
           AA.append(A)
-        dfL = pd.DataFrame(L_f, columns = df2.columns[1:] )
-        fig.add_trace(go.Scatter(x=df3['freq'], y=dfL,
-                                mode='lines',yaxis='y1',
-                                name=str(df2.columns[r])))
-          #fig.add_trace(go.Scatter(x=s, y=f,mode='markers',yaxis='y2',))
-        fig.update_layout(
-            autosize=True,
-            #width=1500,
-            #height=800,
-            yaxis=dict(
-                title_text="Amplitude (db)",
-                titlefont=dict(size=30),),
-            #yaxis2=dict(title='Freq',overlaying='y',side='right',titlefont=dict(size=30),),
-            xaxis=dict(
-                title_text="Freq ",
-                titlefont=dict(size=30),
-
-            ),
-          )
-
-
-        fig.update_yaxes(automargin=True)
-        st.header("Spectral-Graph")
-        st.plotly_chart(fig)  
-        fig.add_trace(go.Scatter(x=s, y=A,
+          fig.add_trace(go.Scatter(x=s, y=A,
                                 mode='lines+text',yaxis='y1',
                                 text=f,
                                 name=str(df2.columns[r])))
-          #fig.add_trace(go.Scatter(x=s, y=f,mode='markers',yaxis='y2',))
         fig.update_layout(
             autosize=True,
             #width=1500,
@@ -271,7 +246,32 @@ try:
         #fig.show()
         st.header("Frequency-Time")
         st.plotly_chart(fig)
+        
+        
+        dfL = pd.DataFrame(L_f, columns = df2.columns[1:] )
+        st.write(dfL)
+        fig.add_trace(go.Scatter(x=df3['freq'], y=dfL,
+                                mode='lines',yaxis='y1',
+                                name=str(df2.columns[r])))
+        fig.update_layout(
+            autosize=True,
+            #width=1500,
+            #height=800,
+            yaxis=dict(
+                title_text="Amplitude (db)",
+                titlefont=dict(size=30),),
+            #yaxis2=dict(title='Freq',overlaying='y',side='right',titlefont=dict(size=30),),
+            xaxis=dict(
+                title_text="Freq ",
+                titlefont=dict(size=30),
 
+            ),
+          )
+
+
+        fig.update_yaxes(automargin=True)
+        st.header("Spectral-Graph")
+        st.plotly_chart(fig)  
         df4=pd.DataFrame()
         ff=np.asarray(ff)
         AA=np.asarray(AA)
