@@ -193,6 +193,15 @@ try:
           f=[]
           A=[]
           s=[]
+          data2=df2.iloc[0:-1,r].values
+          A_signal_fft = scipy.fft.fft(data1)
+          frequencies = scipy.fft.fftfreq(int(df2.shape[0]), 1/(25))
+          df3 = pd.DataFrame()
+          df3['freq']=np.abs(frequencies[:])
+          df3['amp']=np.abs(A_signal_fft)[:]/int(df2.shape[0]))  
+          dummy1=df3[(df3['freq']>1/(int(sample))) & (df3['freq']<2)]['amp']
+          dummy2=df3[(df3['freq']>1/(int(sample))) & (df3['freq']<2)]['freq']
+          L_f.append(dummy1.values)
           for k in range (int(df2.shape[0]/int(sample))-1):
             data1=df2.iloc[int(sample)*k:int(sample)*(k+1),r].values
             A_signal_fft = scipy.fft.fft(data1)
@@ -200,10 +209,7 @@ try:
             frequencies = scipy.fft.fftfreq(int(sample), 1/(25))
             df3 = pd.DataFrame()
             df3['freq']=np.abs(frequencies[:])
-            df3['amp']=np.abs(A_signal_fft)[:]/int(sample)
-            dummy1=df3[(df3['freq']>1/(int(sample))) & (df3['freq']<2)]['amp']
-            dummy2=df3[(df3['freq']>1/(int(sample))) & (df3['freq']<2)]['freq']
-            L_f.append(dummy1.values)
+            df3['amp']=np.abs(A_signal_fft)[:]/int(sample))
             if(k==0 or k==int(df2.shape[0]/int(sample))-2):
                st.write(df2.columns[r]) 
                st.write(df3.T)
@@ -249,34 +255,6 @@ try:
         #fig.show()
         st.header("Frequency-Time")
         st.plotly_chart(fig)
-        L_f=np.asarray(L_f)
-        #st.write(L_f.shape)
-        fig = go.Figure()
-        #dfL = pd.DataFrame(L_f.T, columns = df2.columns[1:] )
-        #st.write(dfL)
-        for r in range (0,len(df2.columns)-1):
-            fig.add_trace(go.Scatter(x=dummy2, y=L_f[r],
-                                mode='lines',yaxis='y1',
-                                name=str(df2.columns[r+1])))
-        fig.update_layout(
-            autosize=True,
-            #width=1500,
-            #height=800,
-            yaxis=dict(
-                title_text="Amplitude (pu)",
-                titlefont=dict(size=30),),
-            #yaxis2=dict(title='Freq',overlaying='y',side='right',titlefont=dict(size=30),),
-            xaxis=dict(
-                title_text="Freq ",
-                titlefont=dict(size=30),
-
-            ),
-          )
-
-
-        fig.update_yaxes(automargin=True)
-        st.header("Spectral-Graph")
-        st.plotly_chart(fig)  
         df4=pd.DataFrame()
         ff=np.asarray(ff)
         AA=np.asarray(AA)
@@ -311,6 +289,36 @@ try:
         fig.update_yaxes(automargin=True)
         st.header("plant wise plot")
         st.plotly_chart(fig)
+        
+        L_f=np.asarray(L_f)
+        #st.write(L_f.shape)
+        fig = go.Figure()
+        #dfL = pd.DataFrame(L_f.T, columns = df2.columns[1:] )
+        #st.write(dfL)
+        for r in range (0,len(df2.columns)-1):
+            fig.add_trace(go.Scatter(x=dummy2, y=L_f[r],
+                                mode='lines',yaxis='y1',
+                                name=str(df2.columns[r+1])))
+        fig.update_layout(
+            autosize=True,
+            #width=1500,
+            #height=800,
+            yaxis=dict(
+                title_text="Amplitude (pu)",
+                titlefont=dict(size=30),),
+            #yaxis2=dict(title='Freq',overlaying='y',side='right',titlefont=dict(size=30),),
+            xaxis=dict(
+                title_text="Freq ",
+                titlefont=dict(size=30),
+
+            ),
+          )
+
+
+        fig.update_yaxes(automargin=True)
+        st.header("Spectral-Graph")
+        st.plotly_chart(fig)  
+        
         
 except:
     pass
