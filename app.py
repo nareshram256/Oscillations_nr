@@ -190,6 +190,7 @@ try:
          'Select sample length',
           options=[100, 200, 400, 800, 1000, 1200, 1400, 1600,1800,2000,2200,2400,2600,2800])
         st.write('chosen sample length is', sample)
+        my_f=[]
         for r in range (1,df2.shape[1]):
           f=[]
           A=[]
@@ -198,7 +199,7 @@ try:
           A_signal_fft = scipy.fft.fft(data2)
           frequencies = scipy.fft.fftfreq(df2.shape[0], 1/(25))
           df3 = pd.DataFrame()
-          df3['freq']=np.abs(frequencies)
+          my_f.append(np.arctan(A_signal_fft[u].imag/A_signal_fft[u].real)/(2*3.14))
           df3['amp']=np.abs(A_signal_fft)/int(df2.shape[0])
           #st.write(df3.T)
           dummy1=df3[(df3['freq']>0) & (df3['freq']<2)]['amp']
@@ -299,8 +300,9 @@ try:
         #st.write(L_f.shape)
         fig = go.Figure()
         L_f=np.asarray(L_f)
+        my_f=np.asarray(my_f)
         for r in range (0,len(df2.columns)-1):
-            fig.add_trace(go.Scatter(x=dummy2, y=L_f[r],
+            fig.add_trace(go.Scatter(x=my_f, y=L_f[r],
                                 mode='lines',yaxis='y1',
                                 name=str(df2.columns[r+1])))
         fig.update_layout(
