@@ -213,9 +213,9 @@ try:
             df3 = pd.DataFrame()
             df3['freq']=np.abs(frequencies[:])
             df3['amp']=np.abs(A_signal_fft)[:]/int(sample)
-            #if(k==0 or k==int(df2.shape[0]/int(sample))-2):
-            #   st.write(df2.columns[r]) 
-            #   st.write(df3.T)
+            if(k==0):
+               st.write(df2.columns[r]) 
+               st.write(df3.T)
             #dummy=df3[(df3['freq']>1/(int(sample)*0.04)) & (df3['freq']<1)]['amp'].max()
             dummy=df3[(df3['freq']>0) & (df3['freq']<2)]['amp'].max()
             #if(len(df3[df3['amp']==df3['amp'].max()]['freq'].values)>0 and df3[df3['amp']==df3['amp'].max()]['freq'].values[0] >1/(int(sample)*0.04) and df3[df3['amp']==df3['amp'].max()]['freq'].values[0]<1):
@@ -234,7 +234,7 @@ try:
           A=np.asarray(A)
           ff.append(f)
           AA.append(A)
-          fig.add_trace(go.Scatter(x=s, y=A,
+          fig.add_trace(go.Scatter(x=f, y=A,
                                 mode='lines+text',yaxis='y1',
                                 text=f,
                                 name=str(df2.columns[r])))
