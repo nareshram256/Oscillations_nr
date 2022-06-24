@@ -201,8 +201,8 @@ try:
           df3['freq']=np.abs(frequencies)
           df3['amp']=np.abs(A_signal_fft)/int(df2.shape[0])
           #st.write(df3.T)
-          dummy1=df3[(df3['freq']>1/(int(df2.shape[0]))) & (df3['freq']<2)]['amp']
-          dummy2=df3[(df3['freq']>1/(int(df2.shape[0]))) & (df3['freq']<2)]['freq']
+          dummy1=df3[(df3['freq']>0) & (df3['freq']<2)]['amp']
+          dummy2=df3[(df3['freq']>0) & (df3['freq']<2)]['freq']
           L_f.append(dummy1.values)
           
           for k in range (int(df2.shape[0]/int(sample))-1):
@@ -217,7 +217,7 @@ try:
             #   st.write(df2.columns[r]) 
             #   st.write(df3.T)
             #dummy=df3[(df3['freq']>1/(int(sample)*0.04)) & (df3['freq']<1)]['amp'].max()
-            dummy=df3[(df3['freq']>1/(int(sample))) & (df3['freq']<2)]['amp'].max()
+            dummy=df3[(df3['freq']>0) & (df3['freq']<2)]['amp'].max()
             #if(len(df3[df3['amp']==df3['amp'].max()]['freq'].values)>0 and df3[df3['amp']==df3['amp'].max()]['freq'].values[0] >1/(int(sample)*0.04) and df3[df3['amp']==df3['amp'].max()]['freq'].values[0]<1):
             if(len(df3[df3['amp']==dummy]['freq'].values)>0):
               f.append(np.round(df3[df3['amp']==dummy]['freq'].values[0],2)) 
