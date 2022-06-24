@@ -279,7 +279,7 @@ try:
             #width=1500,
             #height=800,
             yaxis=dict(
-                title_text="Amplitude (PU)",
+                title_text="Amplitude (DB)",
                 titlefont=dict(size=30),),
             #yaxis2=dict(title='Freq',overlaying='y',side='right',titlefont=dict(size=30),),
             xaxis=dict(
@@ -290,7 +290,7 @@ try:
           )
 
 
-        3fig.update_xaxes(automargin=True)
+        #fig.update_xaxes(automargin=True)
         fig.update_yaxes(type="log")
         st.header("plant wise plot")
         st.plotly_chart(fig)
@@ -308,7 +308,7 @@ try:
             #width=1500,
             #height=800,
             yaxis=dict(
-                title_text="Amplitude (pu)",
+                title_text="Amplitude (DB)",
                 titlefont=dict(size=30),),
             #yaxis2=dict(title='Freq',overlaying='y',side='right',titlefont=dict(size=30),),
             xaxis=dict(
