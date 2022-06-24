@@ -279,7 +279,7 @@ try:
             #width=1500,
             #height=800,
             yaxis=dict(
-                title_text="Amplitude (DB)",
+                title_text="Amplitude (pu)",
                 titlefont=dict(size=30),),
             #yaxis2=dict(title='Freq',overlaying='y',side='right',titlefont=dict(size=30),),
             xaxis=dict(
@@ -308,7 +308,7 @@ try:
             #width=1500,
             #height=800,
             yaxis=dict(
-                title_text="Amplitude (DB)",
+                title_text="Amplitude (pu)",
                 titlefont=dict(size=30),),
             #yaxis2=dict(title='Freq',overlaying='y',side='right',titlefont=dict(size=30),),
             xaxis=dict(
@@ -318,7 +318,7 @@ try:
             ),
           )
 
-        fig.update_Yaxes(type="log")
+        fig.update_yaxes(type="log")
         #fig.update_yaxes(automargin=True)
         st.header("Spectral-Graph")
         st.plotly_chart(fig)  
