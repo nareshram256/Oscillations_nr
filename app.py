@@ -203,8 +203,8 @@ try:
           for u in range (data2.shape[0]/2):
             my_f.append(np.arctan(A_signal_fft[u].imag/A_signal_fft[u].real)*180/3.14)
           #df3['freq']=np.abs(np.gradient(my_f)/(2*3.14)) 
-          df3['freq']=np.abs(frequencies[0:df2.shape[0]/2)
-          df3['amp']=2*np.abs(A_signal_fft[0:df2.shape[0]/2))/int(df2.shape[0])
+          df3['freq']=np.abs(frequencies[0:df2.shape[0]/2])
+          df3['amp']=2*np.abs(A_signal_fft[0:df2.shape[0]/2])/int(df2.shape[0])
           df3['phase']=my_f
           st.write(df3.T)
           dummy1=df3[(df3['freq']>0) & (df3['freq']<2)]['amp']
