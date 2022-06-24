@@ -207,8 +207,8 @@ try:
           st.write(df3.T)
           dummy1=df3[(df3['freq']>0) & (df3['freq']<2)]['amp']
           dummy2=df3[(df3['freq']>0) & (df3['freq']<2)]['freq']
-          L_f.append(dummy1.values)
-          
+          L_A.append(dummy1.values)
+          L_f.append(my_f)
           for k in range (int(df2.shape[0]/int(sample))-1):
             data1=df2.iloc[int(sample)*k:int(sample)*(k+1),r].values
             A_signal_fft = scipy.fft.fft(data1)
@@ -303,9 +303,9 @@ try:
         #st.write(L_f.shape)
         fig = go.Figure()
         L_f=np.asarray(L_f)
-        my_f=np.asarray(my_f)
+        L_A=np.asarray(L_A)
         for r in range (0,len(df2.columns)-1):
-            fig.add_trace(go.Scatter(x=dummy1, y=L_f[r],
+            fig.add_trace(go.Scatter(x=L_f[r], y=L_A[r],
                                 mode='lines',yaxis='y1',
                                 name=str(df2.columns[r+1])))
         fig.update_layout(
