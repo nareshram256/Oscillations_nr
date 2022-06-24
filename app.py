@@ -200,19 +200,19 @@ try:
           A_signal_fft = scipy.fft.fft(data2)
           frequencies = scipy.fft.fftfreq(df2.shape[0], 1/(25))
           df3 = pd.DataFrame()
-          for u in range (data2.shape[0]):
+          for u in range (data2.shape[0]/2):
             my_f.append(np.arctan(A_signal_fft[u].imag/A_signal_fft[u].real)*180/3.14)
           #df3['freq']=np.abs(np.gradient(my_f)/(2*3.14)) 
-          df3['freq']=np.abs(frequencies)
-          df3['amp']=np.abs(A_signal_fft)/int(df2.shape[0])
+          df3['freq']=np.abs(frequencies[0:df2.shape[0]/2)
+          df3['amp']=2*np.abs(A_signal_fft[0:df2.shape[0]/2))/int(df2.shape[0])
           df3['phase']=my_f
           st.write(df3.T)
           dummy1=df3[(df3['freq']>0) & (df3['freq']<2)]['amp']
           dummy2=df3[(df3['freq']>0) & (df3['freq']<2)]['freq']
           dummy3=df3[(df3['freq']>0) & (df3['freq']<2)]['phase']
-          L_A.append(dummy1.values[0:df2.shape[0]/2])
-          L_f.append( df3['freq'].values[0:df2.shape[0]/2])
-          L_ph.append(dummy3.values[0:df2.shape[0]/2])
+          L_A.append(dummy1.values)
+          L_f.append( df3['freq'].values)
+          L_ph.append(dummy3.values)
           for k in range (int(df2.shape[0]/int(sample))-1):
             data1=df2.iloc[int(sample)*k:int(sample)*(k+1),r].values
             A_signal_fft = scipy.fft.fft(data1)
