@@ -246,7 +246,7 @@ try:
         #fig.show()
         st.header("Frequency-Time")
         st.plotly_chart(fig)
-        
+        st.write(L_f)
         fig = go.Figure()
         dfL = pd.DataFrame(L_f, columns = df2.columns[1:] )
         st.write(dfL)
