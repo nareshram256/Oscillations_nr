@@ -209,7 +209,7 @@ try:
             frequencies = scipy.fft.fftfreq(int(sample), 1/(25))
             df3 = pd.DataFrame()
             df3['freq']=np.abs(frequencies[:])
-            df3['amp']=np.abs(A_signal_fft)[:]/int(sample))
+            df3['amp']=np.abs(A_signal_fft)[:]/int(sample)
             if(k==0 or k==int(df2.shape[0]/int(sample))-2):
                st.write(df2.columns[r]) 
                st.write(df3.T)
