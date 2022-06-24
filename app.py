@@ -200,9 +200,10 @@ try:
             frequencies = scipy.fft.fftfreq(int(sample), 1/(25))
             df3 = pd.DataFrame()
             df3['freq']=np.abs(frequencies[1:])
-            df3['amp']=np.abs(A_signal_fft)[1:]/int(sample)
+            df3['amp']=np.log(np.abs(A_signal_fft)[1:]/int(sample))
             L_f.append(df3['amp'].values)
             if(k==0 or k==int(df2.shape[0]/int(sample))-2):
+               st.write(df2.columns[r]) 
                st.write(df3.T)
             #dummy=df3[(df3['freq']>1/(int(sample)*0.04)) & (df3['freq']<1)]['amp'].max()
             dummy=df3[(df3['freq']>1/(int(sample))) & (df3['freq']<2)]['amp'].max()
