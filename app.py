@@ -249,12 +249,12 @@ try:
         L_f=np.asarray(L_f)
         st.write(L_f.shape)
         fig = go.Figure()
-        dfL = pd.DataFrame(L_f.T, columns = df2.columns[1:] )
-        st.write(dfL)
-        for r in range (1,len(df2.columns)):
-            fig.add_trace(go.Scatter(x=df3['freq'], y=dfL[df2.columns[r]],
+        #dfL = pd.DataFrame(L_f.T, columns = df2.columns[1:] )
+        #st.write(dfL)
+        for r in range (0,len(df2.columns)-1):
+            fig.add_trace(go.Scatter(x=df3['freq'], y=L_f[r],
                                 mode='lines',yaxis='y1',
-                                name=str(df2.columns[r])))
+                                name=str(df2.columns[r+1])))
         fig.update_layout(
             autosize=True,
             #width=1500,
