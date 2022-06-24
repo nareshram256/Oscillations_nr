@@ -201,7 +201,9 @@ try:
             df3 = pd.DataFrame()
             df3['freq']=np.abs(frequencies[:])
             df3['amp']=np.abs(A_signal_fft)[:]/int(sample)
-            L_f.append(df3['amp'].values)
+            dummy1=df3[(df3['freq']>1/(int(sample))) & (df3['freq']<2)]['amp']
+            dummy2=df3[(df3['freq']>1/(int(sample))) & (df3['freq']<2)]['freq']
+            L_f.append(dummy1.values)
             if(k==0 or k==int(df2.shape[0]/int(sample))-2):
                st.write(df2.columns[r]) 
                st.write(df3.T)
@@ -253,7 +255,7 @@ try:
         #dfL = pd.DataFrame(L_f.T, columns = df2.columns[1:] )
         #st.write(dfL)
         for r in range (0,len(df2.columns)-1):
-            fig.add_trace(go.Scatter(x=df3['freq'], y=L_f[r],
+            fig.add_trace(go.Scatter(x=dummy2, y=L_f[r],
                                 mode='lines',yaxis='y1',
                                 name=str(df2.columns[r+1])))
         fig.update_layout(
