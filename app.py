@@ -210,9 +210,9 @@ try:
           dummy1=df3[(df3['freq']>0) & (df3['freq']<2)]['amp']
           dummy2=df3[(df3['freq']>0) & (df3['freq']<2)]['freq']
           dummy3=df3[(df3['freq']>0) & (df3['freq']<2)]['phase']
-          L_A.append(dummy1.values)
-          L_f.append( df3['freq'].values)
-          L_ph.append(dummy3.values)
+          L_A.append(dummy1.values[0:df2.shape[0]/2])
+          L_f.append( df3['freq'].values[0:df2.shape[0]/2])
+          L_ph.append(dummy3.values[0:df2.shape[0]/2])
           for k in range (int(df2.shape[0]/int(sample))-1):
             data1=df2.iloc[int(sample)*k:int(sample)*(k+1),r].values
             A_signal_fft = scipy.fft.fft(data1)
@@ -335,7 +335,7 @@ try:
         fig = go.Figure()
         L_ph=np.asarray(L_ph)
         for r in range (0,len(df2.columns)-1):
-            fig.add_trace(go.Scatter(x=df2["time"], y=L_ph[r],
+            fig.add_trace(go.Scatter(x=L_f[r], y=L_ph[r],
                                 mode='lines',yaxis='y1',
                                 name=str(df2.columns[r+1])))
         fig.update_layout(
