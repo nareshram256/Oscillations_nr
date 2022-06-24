@@ -1,3 +1,12 @@
+"""
+==================================================================================================
+Author: Surisetti Naresh Ram, naresh.ram@posoco.in
+Note:
+    the data and the analysis to be used fairly.
+==================================================================================================
+"""
+
+
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
@@ -178,6 +187,8 @@ try:
          options=[100, 200, 400, 800, 1000, 1200, 1400])
         st.write('chosen sample length is', sample)
         #st.write("max frequency detected would be %f Hz"%(25/options))
+        L_A=[]
+        L_f=[]
         for r in range (1,df2.shape[1]):
           f=[]
           A=[]
@@ -188,8 +199,9 @@ try:
             #A_signal_fft=np.sqrt(A_signal_fft.real**2+A_signal_fft.imag**2)
             frequencies = scipy.fft.fftfreq(int(sample), 1/(25))
             df3 = pd.DataFrame()
-            df3['freq']=np.abs(frequencies[0:])
-            df3['amp']=np.abs(A_signal_fft)[0:]/int(sample)
+            df3['freq']=np.abs(frequencies[1:])
+            df3['amp']=np.abs(A_signal_fft)[1:]/int(sample)
+            L_f.append(np.log(df3['amp'].values))
             if(k==0 or k==int(df2.shape[0]/int(sample))-2):
                st.write(df3.T)
             #dummy=df3[(df3['freq']>1/(int(sample)*0.04)) & (df3['freq']<1)]['amp'].max()
@@ -210,7 +222,31 @@ try:
           A=np.asarray(A)
           ff.append(f)
           AA.append(A)
-          fig.add_trace(go.Scatter(x=s, y=A,
+          dfL = pd.DataFrame(L_f, columns = df2.columns[1:] )
+          fig.add_trace(go.Scatter(x=df3['freq'], y=dfL,
+                                mode='lines',yaxis='y1',
+                                name=str(df2.columns[r])))
+          #fig.add_trace(go.Scatter(x=s, y=f,mode='markers',yaxis='y2',))
+        fig.update_layout(
+            autosize=True,
+            #width=1500,
+            #height=800,
+            yaxis=dict(
+                title_text="Amplitude (db)",
+                titlefont=dict(size=30),),
+            #yaxis2=dict(title='Freq',overlaying='y',side='right',titlefont=dict(size=30),),
+            xaxis=dict(
+                title_text="Freq ",
+                titlefont=dict(size=30),
+
+            ),
+          )
+
+
+        fig.update_yaxes(automargin=True)
+        st.header("Spectral-Graph")
+        st.plotly_chart(fig)  
+        fig.add_trace(go.Scatter(x=s, y=A,
                                 mode='lines+text',yaxis='y1',
                                 text=f,
                                 name=str(df2.columns[r])))
