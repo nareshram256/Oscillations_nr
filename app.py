@@ -247,7 +247,7 @@ try:
         st.header("Frequency-Time")
         st.plotly_chart(fig)
         
-        
+        fig = go.Figure()
         dfL = pd.DataFrame(L_f, columns = df2.columns[1:] )
         st.write(dfL)
         fig.add_trace(go.Scatter(x=df3['freq'], y=dfL,
