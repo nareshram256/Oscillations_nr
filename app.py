@@ -184,7 +184,7 @@ try:
         AA=[]
         L_A=[]
         L_f=[]
-        
+        L_ph=[]
         #st.write("max frequency detected would be %f Hz"%(25/options))
         sample= st.select_slider(
          'Select sample length',
@@ -208,7 +208,8 @@ try:
           dummy1=df3[(df3['freq']>0) & (df3['freq']<2)]['amp']
           dummy2=df3[(df3['freq']>0) & (df3['freq']<2)]['freq']
           L_A.append(dummy1.values)
-          L_f.append(my_f)
+          L_f.append( df3['freq'].values)
+          L_ph.append(my_f)
           for k in range (int(df2.shape[0]/int(sample))-1):
             data1=df2.iloc[int(sample)*k:int(sample)*(k+1),r].values
             A_signal_fft = scipy.fft.fft(data1)
@@ -325,9 +326,34 @@ try:
 
         fig.update_yaxes(type="log")
         #fig.update_yaxes(automargin=True)
-        st.header("Spectral-Graph")
+        st.header("Phase-Graph")
         st.plotly_chart(fig)  
         
+        fig = go.Figure()
+        L_ph=np.asarray(L_ph)
+        for r in range (0,len(df2.columns)-1):
+            fig.add_trace(go.Scatter(x=L_f[r], y=L_ph[r],
+                                mode='lines',yaxis='y1',
+                                name=str(df2.columns[r+1])))
+        fig.update_layout(
+            autosize=True,
+            #width=1500,
+            #height=800,
+            yaxis=dict(
+                title_text="phase (radians)",
+                titlefont=dict(size=30),),
+            #yaxis2=dict(title='Freq',overlaying='y',side='right',titlefont=dict(size=30),),
+            xaxis=dict(
+                title_text="Freq ",
+                titlefont=dict(size=30),
+
+            ),
+          )
+
+        fig.update_yaxes(type="log")
+        #fig.update_yaxes(automargin=True)
+        st.header("Spectral-Graph")
+        st.plotly_chart(fig)  
         
 except:
     pass
