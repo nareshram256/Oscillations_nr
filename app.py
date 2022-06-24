@@ -188,22 +188,22 @@ try:
         #st.write("max frequency detected would be %f Hz"%(25/options))
         sample= st.select_slider(
          'Select sample length',
-          options=[100, 200, 400, 800, 1000, 1200, 1400.1600,1800,2000,2200,2400,2600,2800])
+          options=[100, 200, 400, 800, 1000, 1200, 1400, 1600,1800,2000,2200,2400,2600,2800])
         st.write('chosen sample length is', sample)
         for r in range (1,df2.shape[1]):
           f=[]
           A=[]
           s=[]
-          #data2=df2.iloc[:,r].values
-          #A_signal_fft = scipy.fft.fft(data2)
-          #frequencies = scipy.fft.fftfreq(df2.shape[0], 1/(25))
-          #df3 = pd.DataFrame()
-          #df3['freq']=np.abs(frequencies)
-          #df3['amp']=np.abs(A_signal_fft)/int(df2.shape[0])
+          data2=df2.iloc[:,r].values
+          A_signal_fft = scipy.fft.fft(data2)
+          frequencies = scipy.fft.fftfreq(df2.shape[0], 1/(25))
+          df3 = pd.DataFrame()
+          df3['freq']=np.abs(frequencies)
+          df3['amp']=np.abs(A_signal_fft)/int(df2.shape[0])
           #st.write(df3.T)
-          #dummy1=df3[(df3['freq']>1/(int(df2.shape[0]))) & (df3['freq']<2)]['amp']
-          #dummy2=df3[(df3['freq']>1/(int(df2.shape[0]))) & (df3['freq']<2)]['freq']
-          #L_f.append(dummy1.values)
+          dummy1=df3[(df3['freq']>1/(int(df2.shape[0]))) & (df3['freq']<2)]['amp']
+          dummy2=df3[(df3['freq']>1/(int(df2.shape[0]))) & (df3['freq']<2)]['freq']
+          L_f.append(dummy1.values)
           
           for k in range (int(df2.shape[0]/int(sample))-1):
             data1=df2.iloc[int(sample)*k:int(sample)*(k+1),r].values
@@ -255,6 +255,7 @@ try:
 
 
         fig.update_yaxes(automargin=True)
+        fig.update_xaxes(type="log")
         #fig.show()
         st.header("Frequency-Time")
         st.plotly_chart(fig)
@@ -290,6 +291,7 @@ try:
 
 
         fig.update_yaxes(automargin=True)
+        fig.update_xaxes(type="log")
         st.header("plant wise plot")
         st.plotly_chart(fig)
         
@@ -316,7 +318,7 @@ try:
             ),
           )
 
-
+        fig.update_xaxes(type="log")
         fig.update_yaxes(automargin=True)
         st.header("Spectral-Graph")
         st.plotly_chart(fig)  
