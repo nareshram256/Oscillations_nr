@@ -254,7 +254,7 @@ try:
           )
 
 
-        fig.update_yaxes(type="log")
+        fig.update_yaxes(automargin=True)
         #fig.update_xaxes(type="log")
         #fig.show()
         st.header("Frequency-Time")
@@ -290,8 +290,8 @@ try:
           )
 
 
-        #fig.update_xaxes(automargin=True)
-        fig.update_yaxes(type="log")
+        fig.update_xaxes(automargin=True)
+        #fig.update_yaxes(type="log")
         st.header("plant wise plot")
         st.plotly_chart(fig)
         
