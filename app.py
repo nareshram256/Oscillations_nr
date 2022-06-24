@@ -327,7 +327,7 @@ try:
 
         fig.update_yaxes(type="log")
         #fig.update_yaxes(automargin=True)
-        st.header("Phase-Graph")
+        st.header("Sepctral-Graph")
         st.plotly_chart(fig)  
         
         fig = go.Figure()
@@ -351,9 +351,9 @@ try:
             ),
           )
 
-        fig.update_yaxes(type="log")
-        #fig.update_yaxes(automargin=True)
-        st.header("Spectral-Graph")
+        #fig.update_yaxes(type="log")
+        fig.update_yaxes(automargin=True)
+        st.header("phase-Graph")
         st.plotly_chart(fig)  
         
 except:
