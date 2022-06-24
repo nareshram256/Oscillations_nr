@@ -201,8 +201,8 @@ try:
           frequencies = scipy.fft.fftfreq(df2.shape[0], 1/(25))
           df3 = pd.DataFrame()
           for u in range (data2.shape[0]):
-            my_f.append(np.arctan(A_signal_fft[u].imag/A_signal_fft[u].real)/(2*3.14))
-          df3['freq']=my_f  
+            my_f.append(np.arctan(A_signal_fft[u].imag/A_signal_fft[u].real))
+          df3['freq']=np.gradient(my_f)/(2*3.14) 
           df3['amp']=np.abs(A_signal_fft)/int(df2.shape[0])
           st.write(df3.T)
           dummy1=df3[(df3['freq']>0) & (df3['freq']<2)]['amp']
