@@ -222,8 +222,8 @@ try:
           A=np.asarray(A)
           ff.append(f)
           AA.append(A)
-          dfL = pd.DataFrame(L_f, columns = df2.columns[1:] )
-          fig.add_trace(go.Scatter(x=df3['freq'], y=dfL,
+        dfL = pd.DataFrame(L_f, columns = df2.columns[1:] )
+        fig.add_trace(go.Scatter(x=df3['freq'], y=dfL,
                                 mode='lines',yaxis='y1',
                                 name=str(df2.columns[r])))
           #fig.add_trace(go.Scatter(x=s, y=f,mode='markers',yaxis='y2',))
