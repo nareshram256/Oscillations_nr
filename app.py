@@ -193,12 +193,12 @@ try:
           f=[]
           A=[]
           s=[]
-          data2=df2.iloc[0:-1,r].values
-          A_signal_fft = scipy.fft.fft(data1)
+          data2=df2.iloc[:,r].values
+          A_signal_fft = scipy.fft.fft(data2)
           frequencies = scipy.fft.fftfreq(int(df2.shape[0]), 1/(25))
           df3 = pd.DataFrame()
-          df3['freq']=np.abs(frequencies[:])
-          df3['amp']=np.abs(A_signal_fft)[:]/int(df2.shape[0])  
+          df3['freq']=np.abs(frequencies)
+          df3['amp']=np.abs(A_signal_fft)/int(df2.shape[0])  
           dummy1=df3[(df3['freq']>1/(int(sample))) & (df3['freq']<2)]['amp']
           dummy2=df3[(df3['freq']>1/(int(sample))) & (df3['freq']<2)]['freq']
           L_f.append(dummy1.values)
