@@ -98,7 +98,7 @@ if(check==2):
                 os.remove(fil)
     except:
         pass
-    spectras = st.file_uploader("upload file", type={"xlsx"},accept_multiple_files = True)
+    spectras = st.file_uploader("upload file", type={["xlsx","csv"]},accept_multiple_files = True)
     for spectra in spectras:
         if spectra is not None:
             with open(os.path.join(dest,str(spectra.name)),"wb") as f:
