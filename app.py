@@ -156,13 +156,14 @@ try:
                 Data=Data.fillna(0)
                 #st.write(Data.describe())
                 Volt.append(Data[option]/Data[option].max())
-                st.write(len(Data.columns),len(Volt))
                 if((len(Data.columns))<3):
                     title = st.text_input('enter file name','dummy '+str(fil[-14:-9]))
                     na.append(title)
                 else:    
                     na.append(Data[Data.columns[2]].values[2])
                     #na.append(Data[Data.columns[2]].values[2:3])  
+        st.write(Volt)
+        st.write(na)
         else:
           Data=pd.read_excel(files[0],engine='openpyxl')
           ll=np.asarray(Data.columns[1:])
