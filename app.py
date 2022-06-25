@@ -156,7 +156,10 @@ try:
                 Data=pd.read_csv(fil,thousands=',',sep=',')
                 Data=Data.fillna(0)
                 #st.write(Data.describe())
-                Volt.append(Data[option]/Data[option].max())
+                try:
+                    Volt.append(Data[option]/Data[option].max())
+                except
+                    Volt.append(np.zeros(len(Data[option])))
                 if((len(Data.columns))<3):
                     title = st.text_input('enter file name','dummy '+str(fil[-14:-9]))
                     na.append(title)
