@@ -98,7 +98,7 @@ if(check==2):
                 os.remove(fil)
     except:
         pass
-    spectras = st.file_uploader("upload file", type={["xlsx","csv"]},accept_multiple_files = True)
+    spectras = st.file_uploader("upload file", type=["xlsx","csv"],accept_multiple_files = True)
     for spectra in spectras:
         if spectra is not None:
             with open(os.path.join(dest,str(spectra.name)),"wb") as f:
@@ -117,10 +117,9 @@ elif(check==3):
     spectras = st.file_uploader("Choose a CSV file", type={"csv"},accept_multiple_files=True)
     for spectra in spectras:
         with open(os.path.join(dest,str(spectra.name)),"wb") as f:
-            #bytes_data = spectra.read()
-            #data = BytesIO(spectra.getbuffer())
-            #st.write("filename:", uploaded_file.name)
-            f.write((spectra).getbuffer())
+            bytes_data = spectra.read()
+            st.write("filename:", bytes_data.name)
+            f.write(bytes_data)
     files = sorted(glob(dest+'*.csv'))
     st.write(files)
 #st.write('You selected:', option)
