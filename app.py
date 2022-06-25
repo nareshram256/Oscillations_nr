@@ -119,6 +119,13 @@ elif (check==1):
     files = sorted(glob(June+'*.xlsx'))
 
 elif(check==3):
+    try:
+        files = sorted(glob(dest+'*.csv'))
+        if len(files)>0:
+            for fil in files:
+                os.remove(fil)
+    except:
+        pass
     spectras = st.file_uploader("Choose a CSV file", type={"csv"},accept_multiple_files=True)
     for spectra in spectras:
         if spectra is not None:
@@ -167,7 +174,7 @@ try:
                     na.append(Data[Data.columns[int(tt)]].values[2])
                     st.write(na[-1])
                     #na.append(Data[Data.columns[2]].values[2:3])  
-            st.write(Volt)
+            #st.write(Volt)
         else:
           Data=pd.read_excel(files[0],engine='openpyxl')
           ll=np.asarray(Data.columns[1:])
