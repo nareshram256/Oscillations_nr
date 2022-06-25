@@ -150,7 +150,7 @@ try:
             for fil in files:
                 Data=pd.read_csv(fil)
                 Volt.append(Data[option])
-                na.append(Data[Data.columns[2]].values[2])
+                na.append(Data[Data.columns[2]].values[2:3])
                 st.write(Volt)
                 st.write(na)
                 #st.write(Data)
@@ -165,7 +165,7 @@ try:
             Data=pd.read_excel(fil,engine='openpyxl')
             try:
                 Volt.append(Data[option].values)
-                na.append(Data[Data.columns[2]].values[2])
+                na.append(Data[Data.columns[2]].values[2:3])
             except:
                 continue
                 
@@ -188,7 +188,7 @@ try:
         #st.write(len(Volt))
         st.write(np.max(Volt[0]))
         st.write(Volt[0])
-        st.write(na[0])
+        st.write(na)
         import plotly.graph_objects as go
         fig = go.Figure()
         for r in range (0,(len(Volt))):
