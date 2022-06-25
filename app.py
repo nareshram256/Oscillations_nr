@@ -143,16 +143,16 @@ try:
         st.text("lets begin")
         if(".csv" in files[0]):
             #st.text(" yes i'm in")
-            Data=pd.read_csv(files[0],engine='openpyxl')
+            Data=pd.read_csv(files[0])
             #st.write(Data)
             ll=np.asarray(Data.columns[1:])
             option = st.selectbox('Which Oscillations plot you like?',ll)
             for fil in files:
-                Data=pd.read_csv(fil,engine='openpyxl')
+                Data=pd.read_csv(fil)
                 Data=Data.fillna(0)
                 st.write(Data.describe())
-                st.write(Data[option].max())
-                Volt.append(Data[option]/Data[option].max())
+                st.write(float(Data[option].max()))
+                Volt.append(float(Data[option])/float(Data[option].max()))
                 if((len(Data.columns))<3):
                     title = st.text_input('enter file name','dummy '+str(fil[-14:-9]))
                     na.append(title)
