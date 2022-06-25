@@ -143,12 +143,12 @@ try:
         st.text("lets begin")
         if(".csv" in files[0]):
             #st.text(" yes i'm in")
-            Data=pd.read_csv(files[0])
+            Data=pd.read_csv(files[0],engine='openpyxl')
             #st.write(Data)
             ll=np.asarray(Data.columns[1:])
             option = st.selectbox('Which Oscillations plot you like?',ll)
             for fil in files:
-                Data=pd.read_csv(fil)
+                Data=pd.read_csv(fil,engine='openpyxl')
                 Data=Data.fillna(0)
                 st.write(Data.describe())
                 st.write(Data[option].max())
