@@ -118,7 +118,7 @@ elif(check==3):
     for spectra in spectras:
         with open(os.path.join(dest,str(spectra.name)),"wb") as f:
             bytes_data = spectra.read()
-            st.write("filename:", bytes_data.name)
+            st.write(bytes_data)
             f.write(bytes_data)
     files = sorted(glob(dest+'*.csv'))
     st.write(files)
