@@ -162,7 +162,6 @@ try:
             for fil in files:
                 Data=pd.read_csv(fil,thousands=',',sep=',')
                 Data=Data.fillna(0)
-                st.write(len(Data[option]))
                 if(Data[option].max()>0):
                     Volt.append(Data[option]/Data[option].max())
                 else:
