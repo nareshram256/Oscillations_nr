@@ -32,9 +32,9 @@ if st.sidebar.number_input('insert 1 for custom'):
         b.append(st.sidebar.number_input('insert number for b'))    
 else:
     modes=3
-    a=[0,-0.0009,-0.005]
-    b=[0,0.2,0.35]
-    c=[1,0.4,0.2]
+    a=[0,-0.009,-0.005]
+    b=[0,0.6,0.9]
+    c=[1,0.4,0.8]
 #st.sidebar.write('a=',list(a))
 #st.sidebar.write(list(b))
 check=0
