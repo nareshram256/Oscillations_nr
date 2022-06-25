@@ -122,6 +122,7 @@ elif(check==3):
     spectras = st.file_uploader("Choose a CSV file", type={"csv"},accept_multiple_files=True)
     for spectra in spectras:
         if spectra is not None:
+            st.write(spectra.read())
             with open(os.path.join(dest,str(spectra.name)),"wb") as f:
                 f.write((spectra).getbuffer())
             with open(os.path.join(dest1,str(spectra.name)),"wb") as f:
@@ -272,7 +273,7 @@ try:
           A=np.asarray(A)
           ff.append(f)
           AA.append(A)
-          fig.add_trace(go.Scatter(x=f, y=A,
+          fig.add_trace(go.Scatter(x=s, y=A,
                                 mode='lines+text',yaxis='y1',
                                 text=f,
                                 name=str(df2.columns[r])))
@@ -377,7 +378,7 @@ try:
                 titlefont=dict(size=30),),
             #yaxis2=dict(title='Time',overlaying='y',side='right',titlefont=dict(size=30),),
             xaxis=dict(
-                title_text="Time ",
+                title_text="freq ",
                 titlefont=dict(size=30),
 
             ),
