@@ -195,13 +195,13 @@ try:
           f=[]
           A=[]
           s=[]
-          my_f=[]
+          #my_f=[]
           data2=df2.iloc[:,r].values
           A_signal_fft = scipy.fft.fft(data2)
           frequencies = scipy.fft.fftfreq(df2.shape[0], 1/(25))
           df3 = pd.DataFrame()
-          for u in range (int(data2.shape[0]/2)):
-            my_f.append(np.arctan(A_signal_fft[u].imag/A_signal_fft[u].real)*180/3.14)
+          #for u in range (int(data2.shape[0]/2)):
+          my_f=np.arctan2(A_signal_fft[u].imag,A_signal_fft[u].real)*180/3.14
           #df3['freq']=np.abs(np.gradient(my_f)/(2*3.14)) 
           df3['freq']=np.abs(frequencies[0:int(df2.shape[0]/2)])
           df3['amp']=2*np.abs(A_signal_fft[0:int(df2.shape[0]/2)])/int(df2.shape[0])
