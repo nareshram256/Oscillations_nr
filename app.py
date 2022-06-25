@@ -98,20 +98,26 @@ if(check==2):
                 os.remove(fil)
     except:
         pass
-    spectras = st.file_uploader("upload file", type={"xlsx"},accept_multiple_files = True)
-    for spectra in spectras:
-        if spectra is not None:
-            with open(os.path.join(dest,str(spectra.name)),"wb") as f:
-                f.write((spectra).getbuffer())
-            with open(os.path.join(dest1,str(spectra.name)),"wb") as f:
-                f.write((spectra).getbuffer())    
-        else:
-            st.write("Upload excel files")
-
     try:
-      files = sorted(glob(dest+'*.xlsx'))
+        spectras = st.file_uploader("upload file", type={"xlsx"},accept_multiple_files = True)
+        for spectra in spectras:
+            if spectra is not None:
+                with open(os.path.join(dest,str(spectra.name)),"wb") as f:
+                    f.write((spectra).getbuffer())
+                with open(os.path.join(dest1,str(spectra.name)),"wb") as f:
+                    f.write((spectra).getbuffer())    
+            else:
+                st.write("Upload excel files")
+
+         files = sorted(glob(dest+'*.xlsx'))
     except:
-      files = sorted(glob(dest+'*.csv'))
+        spectras = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
+        for spectra in spectras:
+            with open(os.path.join(dest,str(spectra.name)),"wb") as f:
+                bytes_data = spectra.read()
+                #st.write("filename:", uploaded_file.name)
+                f.write(bytes_data)
+        files = sorted(glob(dest+'*.csv'))
 elif (check==1):   
     files = sorted(glob(June+'*.xlsx'))
 
