@@ -205,7 +205,7 @@ try:
           #df3['freq']=np.abs(np.gradient(my_f)/(2*3.14)) 
           df3['freq']=np.abs(frequencies[0:int(df2.shape[0]/2)])
           df3['amp']=2*np.abs(A_signal_fft[0:int(df2.shape[0]/2)])/int(df2.shape[0])
-          df3['phase']=my_f
+          df3['phase']=my_f[0:int(df2.shape[0]/2)]
           st.write(df3.T)
           dummy1=df3[(df3['freq']>0) & (df3['freq']<2)]['amp']
           dummy2=df3[(df3['freq']>0) & (df3['freq']<2)]['freq']
