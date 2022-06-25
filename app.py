@@ -12,7 +12,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from PIL import Image
 import numpy as np
-from io import BytesIO
+from io import BytesIO,StringIO
 from datetime import datetime, timedelta
 import os
 st.title("Oscillations Frequency  Est.  Tool")
@@ -123,12 +123,12 @@ elif(check==3):
     for spectra in spectras:
         if spectra is not None:
             stringio = StringIO(spectra.getvalue().decode("utf-8"))
-            dataf=pd.read_csv(spectra)
+            dataf=pd.read_csv(stringio)
             st.write(dataf)
             with open(os.path.join(dest,str(spectra.name)),"wb") as f:
-                f.write((spectra).getbuffer())
+                f.write(stringio)
             with open(os.path.join(dest1,str(spectra.name)),"wb") as f:
-                f.write((spectra).getbuffer())    
+                f.write(stringio)    
         else:
             st.write("Upload excel files")
     files = sorted(glob(dest+'*.csv'))        
