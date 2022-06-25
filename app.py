@@ -175,7 +175,8 @@ try:
         #st.write(len(Volt))
         try:
             df2 = pd.DataFrame()
-            df2["time"] = pd.to_datetime(Data['STARTDATE])
+            r=st.number_input('insert number for time columns no ')
+            df2["time"] = pd.to_datetime(Data[Data.columns[int(r)]])
         except:
             q=[]
             datetime_object = datetime.now()
