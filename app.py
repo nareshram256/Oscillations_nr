@@ -188,6 +188,7 @@ try:
         #st.write(len(Volt))
         st.write(np.max(Volt[0]))
         st.write(Volt[0])
+        st.write(na[0])
         import plotly.graph_objects as go
         fig = go.Figure()
         for r in range (0,(len(Volt))):
