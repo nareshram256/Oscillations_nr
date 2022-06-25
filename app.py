@@ -149,8 +149,8 @@ try:
             option = st.selectbox('Which Oscillations plot you like?',ll)
             for fil in files:
                 Data=pd.read_csv(fil)
-                Volt.append(Data.iloc[1:,int(np.argwhere(ll==option))+1])
-                na.append(Data.iloc[1][1])
+                Volt.append(Data[option].values)
+                na.append(Data[Data.columns[1]].values[2])
                 st.write(Volt)
                 st.write(na)
                 #st.write(Data)
