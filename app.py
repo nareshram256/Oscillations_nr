@@ -150,8 +150,9 @@ try:
             for fil in files:
                 Data=pd.read_csv(fil)
                 Data=Data.fillna(0)
-                K=Data[option].str.replace(',', '').astype(float)
-                st.write(Data[option].dtype)
+                K=Data[option].astype(str)
+                K=K.replace(',','')
+                st.write(K)
                 Volt.append(float(Data[option])/float(Data[option].max()))
                 if((len(Data.columns))<3):
                     title = st.text_input('enter file name','dummy '+str(fil[-14:-9]))
