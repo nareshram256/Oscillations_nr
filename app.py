@@ -142,9 +142,9 @@ try:
     if(len(files)>0):
         st.write(files)
         if(".csv" in files[0]):
-            st.text(" yes i'm in")
+            #st.text(" yes i'm in")
             Data=pd.read_csv(files[0])
-            st.write(Data)
+            #st.write(Data)
             ll=np.asarray(Data.columns[1:])
             option = st.selectbox(
             'Which Oscillations plot you like?',
@@ -171,6 +171,7 @@ try:
                 continue
 
         import numpy as np
+        st.write(Volt)
         #st.write(len(Volt))
         df2 = pd.DataFrame()
         df2["time"] = pd.to_datetime(Data[Data.columns[0]])
