@@ -116,14 +116,14 @@ elif (check==1):
 elif(check==3):
     spectras = st.file_uploader("Choose a CSV file", type={"csv"},accept_multiple_files=True)
     for spectra in spectras:
-        with open(os.path.join(dest,str(spectra.name)),"wb") as f:
-            bytes_data = spectra.read()
-            st.write(bytes_data)
-            f.write(bytes_data)
-    files = sorted(glob(dest+'*.csv'))
-    st.write(files)
-#st.write('You selected:', option)
-
+        if spectra is not None:
+            with open(os.path.join(dest,str(spectra.name)),"wb") as f:
+                f.write((spectra).getbuffer())
+            with open(os.path.join(dest1,str(spectra.name)),"wb") as f:
+                f.write((spectra).getbuffer())    
+        else:
+            st.write("Upload excel files")
+    files = sorted(glob(dest+'*.csv'))        
 #st.write('you selected',np.argwhere(ll==option)[0])
 
 Volt=[]
@@ -132,6 +132,7 @@ try:
     if(len(files)>0):
         if(check==3):
           Data=pd.read_csv(files[0],engine='openpyxl')
+          st.write(Data)
           ll=np.asarray(Data.columns[1:])
           option = st.selectbox(
             'Which Oscillations plot you like?',
