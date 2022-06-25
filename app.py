@@ -158,7 +158,7 @@ try:
                 #st.write(Data.describe())
                 try:
                     Volt.append(Data[option]/Data[option].max())
-                except
+                except:
                     Volt.append(np.zeros(len(Data[option])))
                 if((len(Data.columns))<3):
                     title = st.text_input('enter file name','dummy '+str(fil[-14:-9]))
