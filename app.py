@@ -196,6 +196,7 @@ try:
         #st.write(Volt[0])
         #st.write(na)
         st.write(df2.T)
+        st.write(na[0])
         import plotly.graph_objects as go
         fig = go.Figure()
         for r in range (0,(len(Volt))):
