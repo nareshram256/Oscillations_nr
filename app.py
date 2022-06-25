@@ -162,8 +162,8 @@ try:
                 else:    
                     na.append(Data[Data.columns[2]].values[2])
                     #na.append(Data[Data.columns[2]].values[2:3])  
-        st.write(Volt)
-        st.write(na)
+            st.write(Volt)
+            st.write(na)      
         else:
           Data=pd.read_excel(files[0],engine='openpyxl')
           ll=np.asarray(Data.columns[1:])
