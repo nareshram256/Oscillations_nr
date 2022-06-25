@@ -17,7 +17,7 @@ from datetime import datetime, timedelta
 import os
 st.title("Oscillations Frequency  Est.  Tool")
 st.sidebar.latex(r'''
-     Y(t)=\sum_{k=0}^{n-1} c^k e^{(a[k]*t+ib[k]*t)}
+     Y(t)=\sum_{k=0}^{n-1} c[k] e^{(a[k]t+ib[k]*2*pi*t)}
  ''')
 if st.sidebar.number_input('insert 1 for custom'):
     modes = st.sidebar.number_input('insert number for modes')
@@ -171,14 +171,24 @@ try:
 
         import numpy as np
         #st.write(Volt)
-        Volt=np.asarray(Volt)
+        #Volt=np.asarray(Volt)
         #st.write(len(Volt))
-        df2 = pd.DataFrame()
-        df2["time"] = pd.to_datetime(Data[Data.columns[0]])
-        st.write(Volt.shape)
+        try:
+            df2 = pd.DataFrame()
+            df2["time"] = pd.to_datetime(Data['STARTDATE])
+        except:
+            q=[]
+            datetime_object = datetime.now()
+            for t in range (3000):
+                time_change = timedelta(seconds=0.04)
+                datetime_object=datetime_object+time_change
+                q.append(datetime_object)
+            df2=pd.DataFrame()
+            df2['tme']=np.asarray(q)                                 
+        #st.write(Volt.shape)
         import plotly.graph_objects as go
         fig = go.Figure()
-        for r in range (0,Volt.shape[0]):
+        for r in range (0,len(Volt)):
             df2[na[r]] = Volt[r]/np.max(Volt[r])
             st.write(df2.T)
             #st.write(r,np.max(Volt[r]),df2[na[r]])
