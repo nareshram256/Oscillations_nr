@@ -156,7 +156,7 @@ try:
                 Data=Data.fillna(0)
                 #st.write(Data.describe())
                 Volt.append(Data[option]/Data[option].max())
-                st.write(Volt)
+                st.write(len(Data.columns),len(Volt))
                 if((len(Data.columns))<3):
                     title = st.text_input('enter file name','dummy '+str(fil[-14:-9]))
                     na.append(title)
@@ -180,7 +180,7 @@ try:
                 na.append(str(fil[-14:-9])) 
             st.write(na)    
         st.write(len(Volt))
-        st.write(Volt[0])
+        st.write(Volt)
         r=st.number_input('insert number for time columns no ')
         import numpy as np
         df2 = pd.DataFrame()
