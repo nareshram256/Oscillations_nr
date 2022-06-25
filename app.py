@@ -108,7 +108,10 @@ if(check==2):
         else:
             st.write("Upload excel files")
 
-    files = sorted(glob(dest+'*.xlsx'))
+    try:
+      files = sorted(glob(dest+'*.xlsx'))
+    except:
+      files = sorted(glob(dest+'*.csv'))
 elif (check==1):   
     files = sorted(glob(June+'*.xlsx'))
 
@@ -121,7 +124,10 @@ Volt=[]
 na=[]
 try:
     if(len(files)>0):
-        Data=pd.read_excel(files[0],engine='openpyxl')
+        try:
+          Data=pd.read_excel(files[0],engine='openpyxl')
+        except:
+          Data=pd.read_csv(files[0],engine='openpyxl')
         ll=np.asarray(Data.columns[1:])
         option = st.selectbox(
         'Which Oscillations plot you like?',
