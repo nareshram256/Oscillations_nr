@@ -179,7 +179,6 @@ try:
             else:    
                 na.append(str(fil[-14:-9])) 
             st.write(na)    
-        st.write(len(Volt))
         st.write(Volt)
         r=st.number_input('insert number for time columns no ')
         import numpy as np
@@ -195,11 +194,10 @@ try:
                 q.append(datetime_object)
             df2["time"]=np.asarray(q)                                 
         
-        #st.write(np.max(Volt[0]))
+        st.write(na)
         st.write(Volt)
         #st.write(na)
         st.write(df2.T)
-        st.write(na[0])
         import plotly.graph_objects as go
         fig = go.Figure()
         for r in range (0,len(Volt)):
