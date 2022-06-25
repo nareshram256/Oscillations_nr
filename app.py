@@ -141,7 +141,7 @@ na=[]
 st.write(files)
 try:
     if(len(files)>0):
-        if('.csv' in files[0]):
+        if(check==3):
           Data=pd.read_csv(files[0],engine='openpyxl')
           st.write(Data)
           ll=np.asarray(Data.columns[1:])
