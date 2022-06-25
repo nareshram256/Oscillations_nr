@@ -81,7 +81,7 @@ June="old/"
 import pandas as pd
 from glob import glob
 if st.button('clear the data'):
-    files = sorted(glob(dest+'*.xlsx'))
+    files = sorted(glob(dest+'/**/*'))
     if len(files)>0:
         for fil in files:
             os.remove(fil)
