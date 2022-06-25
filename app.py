@@ -165,7 +165,7 @@ try:
             Data=pd.read_excel(fil,engine='openpyxl')
             Volt.append(Data[option].values)
             if((len(Data.columns))<3):
-                title = st.text_input('enter file name','dummy')
+                title = st.text_input('enter file name','dummy '+str(fil[-9:-1])
                 na.append(title)
             else:    
                 na.append(Data[Data.columns[2]].values[2:3])
@@ -194,7 +194,7 @@ try:
         fig = go.Figure()
         for r in range (0,(len(Volt))):
             df2[na[r]] = Volt[r]/np.max(Volt[r])
-            st.write(Volt[r]/np.max(Volt[r]))
+            #st.write(Volt[r]/np.max(Volt[r]))
             #st.write(r,np.max(Volt[r]),df2[na[r]])
             fig.add_trace(go.Scatter(x=df2["time"], y=df2[na[r]],
                               mode='lines',
