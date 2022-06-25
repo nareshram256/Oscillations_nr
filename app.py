@@ -150,7 +150,7 @@ try:
             for fil in files:
                 Data=pd.read_csv(fil)
                 Volt.append(Data[option].values)
-                na.append(Data[Data.columns[1]].values[2])
+                na.append(Data[Data.columns[2]].values[2])
                 st.write(Volt)
                 st.write(na)
                 #st.write(Data)
@@ -165,7 +165,7 @@ try:
             Data=pd.read_excel(fil,engine='openpyxl')
             try:
                 Volt.append(Data.iloc[:,int(np.argwhere(ll==option))+1])
-                na.append(Data.iloc[1][1])
+                na.append(Data.iloc[2][1])
             except:
                 continue
 
