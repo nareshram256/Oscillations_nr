@@ -153,7 +153,7 @@ try:
                 Data=pd.read_csv(fil)
                 try:
                     Volt.append(Data.iloc[:,int(np.argwhere(ll==option))+1])
-                    na.append(Data.iloc[0][1])
+                    na.append(Data.iloc[1][1])
                 except:
                     continue
         else:
@@ -166,7 +166,7 @@ try:
             Data=pd.read_excel(fil,engine='openpyxl')
             try:
                 Volt.append(Data.iloc[:,int(np.argwhere(ll==option))+1])
-                na.append(Data.iloc[0][1])
+                na.append(Data.iloc[1][1])
             except:
                 continue
 
@@ -206,7 +206,6 @@ try:
         st.header(" Description of data ")
         st.write(df2.describe())
         df2=df2.fillna(0)
-        #df2.to_csv(dest+"data2.csv", index=False)
         st.download_button(
              label="Download data as CSV",
              data=df2.to_csv().encode('utf-8'),
