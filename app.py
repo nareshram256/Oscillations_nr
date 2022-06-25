@@ -124,7 +124,7 @@ elif(check==3):
         if spectra is not None:
             stringios = StringIO(spectra.getvalue().decode("utf-8"))
             dataf=pd.read_csv(stringios)
-            st.write(os.path.join(dest,str(spectra.name)))
+            #st.write(os.path.join(dest,str(spectra.name)))
             dataf.to_csv(os.path.join(dest,str(spectra.name)))
             dataf.to_csv(os.path.join(dest1,str(spectra.name)))
             #with open(os.path.join(dest,str(spectra.name)),"wb") as f:
@@ -138,7 +138,7 @@ elif(check==3):
 
 Volt=[]
 na=[]
-#st.write(files)
+st.write(files)
 try:
     if(len(files)>0):
         if('.csv' in files[0]):
