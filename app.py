@@ -123,12 +123,12 @@ elif(check==3):
     for spectra in spectras:
         if spectra is not None:
             stringios = StringIO(spectra.getvalue().decode("utf-8"))
-            #dataf=pd.read_csv(stringio)
-            st.write(stringios)
+            dataf=pd.read_csv(stringio)
+            st.write(data)
             with open(os.path.join(dest,str(spectra.name)),"wb") as f:
-                f.write(spectra.getvalue().decode("utf-8"))
+                f.write(data)
             with open(os.path.join(dest1,str(spectra.name)),"wb") as f:
-                f.write(spectra.getvalue().decode("utf-8"))    
+                f.write(data)    
         else:
             st.write("Upload excel files")
     files = sorted(glob(dest+'*.csv'))        
