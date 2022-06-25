@@ -170,6 +170,7 @@ try:
           option = st.selectbox(
             'Which Oscillations plot you like?',
              ll)
+          tt = st.number_input('enter columns no for station_id')
           for fil in files:
             Data=pd.read_excel(fil,engine='openpyxl')
             Data=Data.fillna(0)
@@ -178,7 +179,6 @@ try:
                 title = st.text_input('enter file name','dummy '+str(fil[-14:-9]))
                 na.append(title)
             else:
-                tt = st.number_input('enter columns no e',1))
                 na.append(Data[data.columns[int(tt)].values[2]) 
         #st.write(na)    
         #st.write(Volt)
