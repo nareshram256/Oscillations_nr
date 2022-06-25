@@ -151,8 +151,8 @@ try:
                 Data=pd.read_csv(fil)
                 Volt.append(Data[option].values)
                 na.append(Data[Data.columns[2]].values[2])
-                #st.write(Volt)
-                #st.write(na)
+                st.write(Volt)
+                st.write(na)
                 #st.write(Data)
                 
         else:
@@ -168,9 +168,8 @@ try:
                 na.append(Data.iloc[2][1])
             except:
                 continue
-
-        import numpy as np
         r=st.number_input('insert number for time columns no ')
+        import numpy as np
         try:
             df2 = pd.DataFrame()
             df2["time"] = pd.to_datetime(Data[Data.columns[int(r)]])
@@ -182,7 +181,7 @@ try:
                 datetime_object=datetime_object+time_change
                 q.append(datetime_object)
             df2=pd.DataFrame()
-            df2['tme']=np.asarray(q)                                 
+            df2["time"]=np.asarray(q)                                 
         st.write(len(Volt))
         import plotly.graph_objects as go
         fig = go.Figure()
