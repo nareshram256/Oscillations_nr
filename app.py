@@ -103,7 +103,7 @@ if(check==2):
                 os.remove(fil)
     except:
         pass
-    spectras = st.file_uploader("upload file", type=["xlsx","csv"],accept_multiple_files = True)
+    spectras = st.file_uploader("upload file", type=["xlsx"],accept_multiple_files = True)
     for spectra in spectras:
         if spectra is not None:
             with open(os.path.join(dest,str(spectra.name)),"wb") as f:
@@ -122,9 +122,9 @@ elif(check==3):
     spectras = st.file_uploader("Choose a CSV file", type={"csv"},accept_multiple_files=True)
     for spectra in spectras:
         if spectra is not None:
-            #stringios = StringIO(spectra.getvalue().decode("utf-8"))
-            stringios=StringIO(spectra.getvalue())
-            dataf=pd.read_csv(stringios,thousands=r',')
+            stringios = StringIO(spectra.getvalue().decode("utf-8"))
+            #stringios=StringIO(spectra.getvalue())
+            dataf=pd.read_csv(stringios,thousands=',')
             st.write(dataf.describe())
             #st.write(os.path.join(dest,str(spectra.name)))
             dataf.to_csv(os.path.join(dest,str(spectra.name)))
@@ -150,7 +150,7 @@ try:
             ll=np.asarray(Data.columns[1:])
             option = st.selectbox('Which Oscillations plot you like?',ll)
             for fil in files:
-                Data=pd.read_csv(fil)
+                Data=pd.read_csv(fil,thousands=',')
                 #Data[option]=Data[option].astype(str)
                 st.write(Data.describe())
                 Volt.append(float(Data[option])/float(Data[option].max()))
