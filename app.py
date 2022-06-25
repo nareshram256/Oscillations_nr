@@ -167,7 +167,7 @@ try:
                     na.append(Data[Data.columns[int(tt)]].values[2])
                     st.write(na[-1])
                     #na.append(Data[Data.columns[2]].values[2:3])  
-            st.write(Volt)
+            #st.write(Volt)
             #st.write(na)      
         else:
           Data=pd.read_excel(files[0],engine='openpyxl')
