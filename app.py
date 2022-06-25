@@ -109,7 +109,7 @@ if(check==2):
             else:
                 st.write("Upload excel files")
 
-         files = sorted(glob(dest+'*.xlsx'))
+        files = sorted(glob(dest+'*.xlsx'))
     except:
         spectras = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
         for spectra in spectras:
