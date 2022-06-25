@@ -189,7 +189,7 @@ try:
         st.write(df2.T)
         import plotly.graph_objects as go
         fig = go.Figure()
-        for r in range (0,len(Volt)):
+        for r in range (0,(len(Volt))):
             df2[na[r]] = Volt[r]/np.max(Volt[r])
             st.write(df2.T)
             #st.write(r,np.max(Volt[r]),df2[na[r]])
