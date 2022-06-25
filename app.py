@@ -162,8 +162,8 @@ try:
                 else:    
                     na.append(Data[Data.columns[2]].values[2])
                     #na.append(Data[Data.columns[2]].values[2:3])  
-            st.write(Volt)
-            st.write(na)      
+            #st.write(Volt)
+            #st.write(na)      
         else:
           Data=pd.read_excel(files[0],engine='openpyxl')
           ll=np.asarray(Data.columns[1:])
@@ -178,9 +178,9 @@ try:
                 title = st.text_input('enter file name','dummy '+str(fil[-14:-9]))
                 na.append(title)
             else:    
-                na.append(str(fil[-14:-9])) 
+                na.append(Data[Data.columns[1]].values[2]) 
         #st.write(na)    
-        st.write(Volt)
+        #st.write(Volt)
         r=st.number_input('insert number for time columns no ')
         import numpy as np
         df2 = pd.DataFrame()
@@ -196,17 +196,10 @@ try:
             df2["time"]=np.asarray(q)                                 
         
         #st.write(na)
-        #st.write(Volt)
-        #st.write(na)
-        st.write(df2.T)
         import plotly.graph_objects as go
         fig = go.Figure()
         for r in range (0,len(Volt)):
-            st.write(r,Volt[r],max(Volt[r]))
-            df2[na[r]] = Volt[r]/np.max(Volt[r])
-            #st.write(Volt[r]/np.max(Volt[r]))
-            #st.write(r,np.max(Volt[r]),df2[na[r]])
-            #st.write(df2.T)
+            df2[na[r]] = Volt[r]
             fig.add_trace(go.Scatter(x=df2["time"], y=df2[na[r]],
                               mode='lines',
                               name=str(na[r])))
