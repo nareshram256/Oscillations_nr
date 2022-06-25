@@ -132,7 +132,7 @@ try:
         if(check==3):
           Data=pd.read_csv(files[0],engine='openpyxl')
           ll=np.asarray(Data.columns[1:])
-            option = st.selectbox(
+          option = st.selectbox(
             'Which Oscillations plot you like?',
              ll)
           for fil in files:
@@ -145,7 +145,7 @@ try:
         else:
           Data=pd.read_excel(files[0],engine='openpyxl')
           ll=np.asarray(Data.columns[1:])
-            option = st.selectbox(
+          option = st.selectbox(
             'Which Oscillations plot you like?',
              ll)
           for fil in files:
