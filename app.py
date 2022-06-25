@@ -151,8 +151,8 @@ try:
                 Data=pd.read_csv(fil)
                 Volt.append(Data[option].values)
                 na.append(Data[Data.columns[2]].values[2])
-                st.write(Volt)
-                st.write(na)
+                3st.write(Volt)
+                3st.write(na)
                 #st.write(Data)
                 
         else:
@@ -170,12 +170,9 @@ try:
                 continue
 
         import numpy as np
-        #st.write(Volt)
-        #Volt=np.asarray(Volt)
-        #st.write(len(Volt))
+        r=st.number_input('insert number for time columns no ')
         try:
             df2 = pd.DataFrame()
-            r=st.number_input('insert number for time columns no ')
             df2["time"] = pd.to_datetime(Data[Data.columns[int(r)]])
         except:
             q=[]
