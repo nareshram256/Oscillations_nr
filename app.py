@@ -89,7 +89,7 @@ import warnings
 warnings.simplefilter("ignore")
 
 
-check=st.number_input('1: default/June data    \t    2: Custom Upload')
+check=st.number_input('1: default/June data    \t    2: Custom Upload xlsx \t 3: custom upload csv')
 if(check==2):
     try:
         files = sorted(glob(dest+'*.xlsx'))
@@ -98,30 +98,29 @@ if(check==2):
                 os.remove(fil)
     except:
         pass
-    try:
-        spectras = st.file_uploader("upload file", type={"xlsx"},accept_multiple_files = True)
-        for spectra in spectras:
-            if spectra is not None:
-                with open(os.path.join(dest,str(spectra.name)),"wb") as f:
-                    f.write((spectra).getbuffer())
-                with open(os.path.join(dest1,str(spectra.name)),"wb") as f:
-                    f.write((spectra).getbuffer())    
-            else:
-                st.write("Upload excel files")
-
-        files = sorted(glob(dest+'*.xlsx'))
-    except:
-        spectras = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
-        for spectra in spectras:
+    spectras = st.file_uploader("upload file", type={"xlsx"},accept_multiple_files = True)
+    for spectra in spectras:
+        if spectra is not None:
             with open(os.path.join(dest,str(spectra.name)),"wb") as f:
-                bytes_data = spectra.read()
-                #st.write("filename:", uploaded_file.name)
-                f.write(bytes_data)
-        files = sorted(glob(dest+'*.csv'))
+                f.write((spectra).getbuffer())
+            with open(os.path.join(dest1,str(spectra.name)),"wb") as f:
+                f.write((spectra).getbuffer())    
+        else:
+            st.write("Upload excel files")
+
+    files = sorted(glob(dest+'*.xlsx'))
+    
 elif (check==1):   
     files = sorted(glob(June+'*.xlsx'))
 
-    
+elif(check==3):
+    spectras = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
+    for spectra in spectras:
+        with open(os.path.join(dest,str(spectra.name)),"wb") as f:
+            bytes_data = spectra.read()
+            #st.write("filename:", uploaded_file.name)
+            f.write(bytes_data)
+    files = sorted(glob(dest+'*.csv'))
 #st.write('You selected:', option)
 
 #st.write('you selected',np.argwhere(ll==option)[0])
