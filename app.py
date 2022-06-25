@@ -123,10 +123,11 @@ elif(check==3):
     for spectra in spectras:
         if spectra is not None:
             #stringios = StringIO(spectra.getvalue().decode("utf-8"))
+            stringios = StringIO(spectra.getvalue().decode("utf-16-le"))
             #dataf=pd.read_csv(stringios,thousands=',')
             bytes_data = spectra.read()
-            st.write("filename:", spectra.name)
-            st.write(bytes_data)
+            #st.write("filename:", spectra.name)
+            #st.write(bytes_data)
             #st.write(os.path.join(dest,str(spectra.name)))
             #dataf.to_csv(os.path.join(dest,str(spectra.name)))
             #dataf.to_csv(os.path.join(dest1,str(spectra.name)))
@@ -146,12 +147,12 @@ try:
         st.text("lets begin")
         if(".csv" in files[0]):
             #st.text(" yes i'm in")
-            Data=pd.read_csv(files[0])
+            Data=pd.read_csv(files[0],thousands=',',sep=',')
             #st.write(Data)
             ll=np.asarray(Data.columns[1:])
             option = st.selectbox('Which Oscillations plot you like?',ll)
             for fil in files:
-                Data=pd.read_csv(fil,thousands=',')
+                Data=pd.read_csv(fil,thousands=',',sep=',')
                 #Data[option]=Data[option].astype(str)
                 st.write(Data.describe())
                 Volt.append(float(Data[option])/float(Data[option].max()))
