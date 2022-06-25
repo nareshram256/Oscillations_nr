@@ -163,12 +163,13 @@ try:
              ll)
           for fil in files:
             Data=pd.read_excel(fil,engine='openpyxl')
-            try:
-                Volt.append(Data[option].values)
+            Volt.append(Data[option].values)
+            if(len(Data.columns)<2):
+                title = st.text_input('enter file name')
+                na.append(title)
+            else:    
                 na.append(Data[Data.columns[2]].values[2:3])
-            except:
-                continue
-                
+            
                 
                 
         r=st.number_input('insert number for time columns no ')
@@ -186,8 +187,8 @@ try:
             df2=pd.DataFrame()
             df2["time"]=np.asarray(q)                                 
         #st.write(len(Volt))
-        st.write(np.max(Volt[0]))
-        st.write(Volt[0])
+        #st.write(np.max(Volt[0]))
+        #st.write(Volt[0])
         st.write(na)
         import plotly.graph_objects as go
         fig = go.Figure()
