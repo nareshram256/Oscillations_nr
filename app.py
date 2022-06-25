@@ -150,14 +150,14 @@ try:
             option = st.selectbox('Which Oscillations plot you like?',ll)
             for fil in files:
                 Data=pd.read_csv(fil)
-                Volt.append(Data[option])
+                Volt.append(Data[option]/Data[option].max())
                 if((len(Data.columns))<3):
                     title = st.text_input('enter file name','dummy '+str(fil[-14:-9]))
                     na.append(title)
                 else:    
                     na.append(Data[Data.columns[2]].values[2])
                 #na.append(Data[Data.columns[2]].values[2:3])
-                #st.write(Volt)
+                st.write(Volt)
                 
                 st.write(na)
                 #st.write(Data)
