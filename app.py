@@ -150,7 +150,7 @@ try:
             for fil in files:
                 Data=pd.read_csv(fil)
                 Data=Data.fillna(0)
-                K=Data[option].str.replace(',', '').astype(float))
+                K=Data[option].str.replace(',', '').astype(float)
                 st.write(Data[option].dtype)
                 Volt.append(float(Data[option])/float(Data[option].max()))
                 if((len(Data.columns))<3):
