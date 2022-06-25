@@ -122,15 +122,16 @@ elif(check==3):
     spectras = st.file_uploader("Choose a CSV file", type={"csv"},accept_multiple_files=True)
     for spectra in spectras:
         if spectra is not None:
-            stringios = StringIO(spectra.getvalue().decode("utf-8"))
-            #stringios=StringIO(spectra.getvalue())
-            dataf=pd.read_csv(stringios,thousands=',')
-            st.write(dataf.describe())
+            #stringios = StringIO(spectra.getvalue().decode("utf-8"))
+            #dataf=pd.read_csv(stringios,thousands=',')
+            bytes_data = spectra.read()
+            st.write("filename:", spectra.name)
+            st.write(bytes_data)
             #st.write(os.path.join(dest,str(spectra.name)))
-            dataf.to_csv(os.path.join(dest,str(spectra.name)))
-            dataf.to_csv(os.path.join(dest1,str(spectra.name)))
-            #with open(os.path.join(dest,str(spectra.name)),"wb") as f:
-            #    f.write(dataf)
+            #dataf.to_csv(os.path.join(dest,str(spectra.name)))
+            #dataf.to_csv(os.path.join(dest1,str(spectra.name)))
+            with open(os.path.join(dest,str(spectra.name)),"wb") as f:
+            #    f.write(bytes_data)
             #with open(os.path.join(dest1,str(spectra.name)),"wb") as f:
             #    f.write(dataf)    
         else:
