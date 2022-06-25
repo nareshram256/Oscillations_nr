@@ -144,7 +144,7 @@ try:
         if(".csv" in files[0]):
             #st.text(" yes i'm in")
             Data=pd.read_csv(files[0])
-            #st.write(Data)
+            st.write(Data)
             ll=np.asarray(Data.columns[1:])
             option = st.selectbox(
             'Which Oscillations plot you like?',
@@ -152,7 +152,7 @@ try:
             for fil in files:
                 Data=pd.read_csv(fil)
                 try:
-                    Volt.append(Data.iloc[:,int(np.argwhere(ll==option))+1])
+                    Volt.append(Data.iloc[1:,int(np.argwhere(ll==option))+1])
                     na.append(Data.iloc[1][1])
                 except:
                     continue
