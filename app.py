@@ -162,6 +162,7 @@ try:
                     na.append(title)
                 else:    
                     na.append(Data[Data.columns[int(tt)]].values[2])
+                    st.write(na[-1])
                     #na.append(Data[Data.columns[2]].values[2:3])  
             #st.write(Volt)
             #st.write(na)      
@@ -181,6 +182,7 @@ try:
                 na.append(title)
             else:
                 na.append(Data[Data.columns[int(tt)]].values[2]) 
+                st.write(na[-1])
         #st.write(na)    
         #st.write(Volt)
         r=st.number_input('insert number for time columns no ')
