@@ -129,15 +129,26 @@ Volt=[]
 na=[]
 try:
     if(len(files)>0):
-        try:
-          Data=pd.read_excel(files[0],engine='openpyxl')
-        except:
+        if(check==3):
           Data=pd.read_csv(files[0],engine='openpyxl')
-        ll=np.asarray(Data.columns[1:])
-        option = st.selectbox(
-        'Which Oscillations plot you like?',
-         ll)
-        for fil in files:
+          ll=np.asarray(Data.columns[1:])
+            option = st.selectbox(
+            'Which Oscillations plot you like?',
+             ll)
+          for fil in files:
+            Data=pd.read_csv(fil,engine='openpyxl')
+            try:
+                Volt.append(Data.iloc[:,int(np.argwhere(ll==option))+1])
+                na.append(Data.iloc[0][1])
+            except:
+                continue
+        else:
+          Data=pd.read_excel(files[0],engine='openpyxl')
+          ll=np.asarray(Data.columns[1:])
+            option = st.selectbox(
+            'Which Oscillations plot you like?',
+             ll)
+          for fil in files:
             Data=pd.read_excel(fil,engine='openpyxl')
             try:
                 Volt.append(Data.iloc[:,int(np.argwhere(ll==option))+1])
