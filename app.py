@@ -118,9 +118,9 @@ elif(check==3):
     for spectra in spectras:
         with open(os.path.join(dest,str(spectra.name)),"wb") as f:
             #bytes_data = spectra.read()
-            data = BytesIO(spectra.getbuffer())
+            #data = BytesIO(spectra.getbuffer())
             #st.write("filename:", uploaded_file.name)
-            f.write(data)
+            f.write(spectra).getbuffer())
     files = sorted(glob(dest+'*.csv'))
 #st.write('You selected:', option)
 
