@@ -133,7 +133,7 @@ elif(check==3):
 
 Volt=[]
 na=[]
-st.write(files)
+#st.write(files)
 try:
     if(len(files)>0):
         if('.csv' in files[0]):
