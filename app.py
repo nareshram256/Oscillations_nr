@@ -179,7 +179,7 @@ try:
                 title = st.text_input('enter file name','dummy '+str(fil[-14:-9]))
                 na.append(title)
             else:
-                na.append(Data[data.columns[int(tt)].values[2]) 
+                na.append(Data[data.columns[int(tt)]].values[2]) 
         #st.write(na)    
         #st.write(Volt)
         r=st.number_input('insert number for time columns no ')
