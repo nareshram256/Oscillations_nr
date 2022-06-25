@@ -151,6 +151,8 @@ try:
                 Data=pd.read_csv(fil)
                 Volt.append(Data.iloc[1:,int(np.argwhere(ll==option))+1])
                 na.append(Data.iloc[1][1])
+                st.write(Volt)
+                st.write(na)
                 #st.write(Data)
                 
         else:
