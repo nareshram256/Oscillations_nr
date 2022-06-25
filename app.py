@@ -131,7 +131,7 @@ elif(check==3):
             #dataf.to_csv(os.path.join(dest,str(spectra.name)))
             #dataf.to_csv(os.path.join(dest1,str(spectra.name)))
             with open(os.path.join(dest,str(spectra.name)),"wb") as f:
-            #    f.write(bytes_data)
+                f.write(bytes_data)
             #with open(os.path.join(dest1,str(spectra.name)),"wb") as f:
             #    f.write(dataf)    
         else:
