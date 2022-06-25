@@ -125,8 +125,8 @@ elif(check==3):
             stringios = StringIO(spectra.getvalue().decode("utf-8"))
             dataf=pd.read_csv(stringios)
             st.write(os.path.join(dest,str(spectra.name)))
-            data.to_csv(os.path.join(dest,str(spectra.name)))
-            data.to_csv(os.path.join(dest1,str(spectra.name)))
+            dataf.to_csv(os.path.join(dest,str(spectra.name)))
+            dataf.to_csv(os.path.join(dest1,str(spectra.name)))
             #with open(os.path.join(dest,str(spectra.name)),"wb") as f:
             #    f.write(dataf)
             #with open(os.path.join(dest1,str(spectra.name)),"wb") as f:
