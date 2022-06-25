@@ -128,6 +128,7 @@ elif(check==3):
 
 Volt=[]
 na=[]
+st.write(files)
 try:
     if(len(files)>0):
         if(check==3):
