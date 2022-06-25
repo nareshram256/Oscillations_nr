@@ -172,13 +172,14 @@ try:
 
         import numpy as np
         #st.write(Volt)
+        Volt=np.asarray(Volt)
         #st.write(len(Volt))
         df2 = pd.DataFrame()
         df2["time"] = pd.to_datetime(Data[Data.columns[0]])
-        st.write(df2.T)
+        st.write(Volt.shape)
         import plotly.graph_objects as go
         fig = go.Figure()
-        for r in range (0,len(Volt)):
+        for r in range (0,Volt.shape[1]):
             df2[na[r]] = Volt[r]/np.max(Volt[r])
             #st.write(Volt[r],np.max(Volt[r]))
             fig.add_trace(go.Scatter(x=df2["time"], y=df2[na[r]],
