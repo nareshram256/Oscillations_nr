@@ -164,8 +164,8 @@ try:
           for fil in files:
             Data=pd.read_excel(fil,engine='openpyxl')
             Volt.append(Data[option].values)
-            if(len(Data.columns)<2):
-                title = st.text_input('enter file name')
+            if((len(Data.columns))<2):
+                title = st.text_input('enter file name','dummy')
                 na.append(title)
             else:    
                 na.append(Data[Data.columns[2]].values[2:3])
