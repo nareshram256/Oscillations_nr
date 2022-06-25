@@ -122,6 +122,7 @@ elif(check==3):
             #st.write("filename:", uploaded_file.name)
             f.write((spectra).getbuffer())
     files = sorted(glob(dest+'*.csv'))
+    st.write(files)
 #st.write('You selected:', option)
 
 #st.write('you selected',np.argwhere(ll==option)[0])
