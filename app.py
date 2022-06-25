@@ -81,7 +81,7 @@ June="old/"
 import pandas as pd
 from glob import glob
 if st.button('clear the data'):
-    files = sorted(glob(dest+'/**/*'))
+    files = sorted(glob(dest+'*.xlsx'))
     if len(files)>0:
         for fil in files:
             os.remove(fil)
@@ -114,7 +114,7 @@ elif (check==1):
     files = sorted(glob(June+'*.xlsx'))
 
 elif(check==3):
-    spectras = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
+    spectras = st.file_uploader("Choose a CSV file", type={"csv"},accept_multiple_files=True)
     for spectra in spectras:
         with open(os.path.join(dest,str(spectra.name)),"wb") as f:
             #bytes_data = spectra.read()
