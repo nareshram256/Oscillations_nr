@@ -153,21 +153,17 @@ try:
             option = st.selectbox('Which Oscillations plot you like?',ll)
             for fil in files:
                 Data=pd.read_csv(fil,thousands=',',sep=',')
+                Data=Data.fillna(0)
                 #Data[option]=Data[option].astype(str)
-                st.write(Data.describe())
-                st.write(float(Data[option].max()))
+                #st.write(Data.describe())
+                #st.write(float(Data[option].max()))
                 Volt.append(float(Data[option])/float(Data[option].max()))
                 if((len(Data.columns))<3):
                     title = st.text_input('enter file name','dummy '+str(fil[-14:-9]))
                     na.append(title)
                 else:    
                     na.append(Data[Data.columns[2]].values[2])
-                #na.append(Data[Data.columns[2]].values[2:3])
-                st.write(Volt)
-                
-                st.write(na)
-                #st.write(Data)
-                
+                    #na.append(Data[Data.columns[2]].values[2:3])  
         else:
           Data=pd.read_excel(files[0],engine='openpyxl')
           ll=np.asarray(Data.columns[1:])
@@ -184,7 +180,8 @@ try:
             else:    
                 na.append(str(fil[-14:-9])) 
             st.write(na)    
-        #st.write(len(Volt))
+        st.write(len(Volt))
+        st.write(Volt[0])
         r=st.number_input('insert number for time columns no ')
         import numpy as np
         df2 = pd.DataFrame()
