@@ -144,18 +144,15 @@ try:
         if(".csv" in files[0]):
             #st.text(" yes i'm in")
             Data=pd.read_csv(files[0])
-            st.write(Data)
+            #st.write(Data)
             ll=np.asarray(Data.columns[1:])
-            option = st.selectbox(
-            'Which Oscillations plot you like?',
-             ll)
+            option = st.selectbox('Which Oscillations plot you like?',ll)
             for fil in files:
                 Data=pd.read_csv(fil)
-                try:
-                    Volt.append(Data.iloc[1:,int(np.argwhere(ll==option))+1])
-                    na.append(Data.iloc[1][1])
-                except:
-                    continue
+                Volt.append(Data.iloc[1:,int(np.argwhere(ll==option))+1])
+                na.append(Data.iloc[1][1])
+                #st.write(Data)
+                
         else:
           Data=pd.read_excel(files[0],engine='openpyxl')
           ll=np.asarray(Data.columns[1:])
@@ -176,7 +173,7 @@ try:
         #st.write(len(Volt))
         df2 = pd.DataFrame()
         df2["time"] = pd.to_datetime(Data[Data.columns[0]])
-        #st.write(Volt)
+        st.write(Volt.shape)
         import plotly.graph_objects as go
         fig = go.Figure()
         for r in range (0,Volt.shape[0]):
