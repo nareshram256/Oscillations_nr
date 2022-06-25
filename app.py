@@ -140,7 +140,7 @@ Volt=[]
 na=[]
 try:
     if(len(files)>0):
-        st.write(files)
+        st.text("lets begin")
         if(".csv" in files[0]):
             #st.text(" yes i'm in")
             Data=pd.read_csv(files[0])
@@ -176,7 +176,7 @@ try:
         #st.write(len(Volt))
         df2 = pd.DataFrame()
         df2["time"] = pd.to_datetime(Data[Data.columns[0]])
-        st.write(Volt.shape)
+        st.write(Volt)
         import plotly.graph_objects as go
         fig = go.Figure()
         for r in range (0,Volt.shape[0]):
