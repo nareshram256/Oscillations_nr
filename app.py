@@ -171,11 +171,11 @@ try:
                 continue
 
         import numpy as np
-        st.write(Volt)
+        #st.write(Volt)
         #st.write(len(Volt))
         df2 = pd.DataFrame()
         df2["time"] = pd.to_datetime(Data[Data.columns[0]])
-
+        st.write(df2.T)
         import plotly.graph_objects as go
         fig = go.Figure()
         for r in range (0,len(Volt)):
