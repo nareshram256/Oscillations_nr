@@ -85,6 +85,11 @@ if st.button('clear the data'):
     if len(files)>0:
         for fil in files:
             os.remove(fil)
+    else:
+         files = sorted(glob(dest+'*.csv'))
+         if len(files)>0:
+            for fil in files:
+                os.remove(fil) 
 import warnings
 warnings.simplefilter("ignore")
 
@@ -131,7 +136,7 @@ na=[]
 st.write(files)
 try:
     if(len(files)>0):
-        if(check==3):
+        if('.csv' in files[0]):
           Data=pd.read_csv(files[0],engine='openpyxl')
           st.write(Data)
           ll=np.asarray(Data.columns[1:])
