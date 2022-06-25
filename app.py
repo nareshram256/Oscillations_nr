@@ -186,7 +186,7 @@ try:
                 q.append(datetime_object)
             df2=pd.DataFrame()
             df2['tme']=np.asarray(q)                                 
-        #st.write(Volt.shape)
+        st.write(len(Volt))
         import plotly.graph_objects as go
         fig = go.Figure()
         for r in range (0,len(Volt)):
