@@ -150,9 +150,15 @@ try:
             for fil in files:
                 Data=pd.read_csv(fil)
                 Volt.append(Data[option])
-                na.append(Data[Data.columns[2]].values[2:3])
-                st.write(Volt)
-                st.write(na)
+                if((len(Data.columns))<3):
+                    title = st.text_input('enter file name','dummy '+str(fil[-14:-9]))
+                    na.append(title)
+                else:    
+                    na.append(Data[Data.columns[2]].values[2:3])
+                #na.append(Data[Data.columns[2]].values[2:3])
+                #st.write(Volt)
+                
+                #st.write(na)
                 #st.write(Data)
                 
         else:
@@ -186,7 +192,7 @@ try:
                 q.append(datetime_object)
             df2=pd.DataFrame()
             df2["time"]=np.asarray(q)                                 
-        #st.write(len(Volt))
+        st.write(len(Volt))
         #st.write(np.max(Volt[0]))
         #st.write(Volt[0])
         st.write(na)
