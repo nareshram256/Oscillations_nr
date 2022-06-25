@@ -179,7 +179,7 @@ try:
         st.write(Volt.shape)
         import plotly.graph_objects as go
         fig = go.Figure()
-        for r in range (0,Volt.shape[1]):
+        for r in range (0,Volt.shape[0]):
             df2[na[r]] = Volt[r]/np.max(Volt[r])
             #st.write(Volt[r],np.max(Volt[r]))
             fig.add_trace(go.Scatter(x=df2["time"], y=df2[na[r]],
