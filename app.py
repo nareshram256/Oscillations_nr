@@ -123,7 +123,7 @@ elif(check==3):
     for spectra in spectras:
         if spectra is not None:
             #stringios = StringIO(spectra.getvalue().decode("utf-8"))
-            stringios=StringIO(spectra)
+            stringios=StringIO(spectra.getvalue())
             dataf=pd.read_csv(stringios,thousands=r',')
             st.write(dataf.describe())
             #st.write(os.path.join(dest,str(spectra.name)))
