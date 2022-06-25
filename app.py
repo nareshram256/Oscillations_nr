@@ -158,7 +158,7 @@ try:
                 #na.append(Data[Data.columns[2]].values[2:3])
                 #st.write(Volt)
                 
-                #st.write(na)
+                st.write(na)
                 #st.write(Data)
                 
         else:
@@ -174,10 +174,8 @@ try:
                 title = st.text_input('enter file name','dummy '+str(fil[-14:-9]))
                 na.append(title)
             else:    
-                na.append(Data[Data.columns[2]].values[2:3])
-            
-                
-                
+                na.append(Data[Data.columns[2]].values[2:3]) 
+        st.write(len(Volt))
         r=st.number_input('insert number for time columns no ')
         import numpy as np
         try:
@@ -192,7 +190,7 @@ try:
                 q.append(datetime_object)
             df2=pd.DataFrame()
             df2["time"]=np.asarray(q)                                 
-        st.write(len(Volt))
+        
         #st.write(np.max(Volt[0]))
         #st.write(Volt[0])
         st.write(na)
