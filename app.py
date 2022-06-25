@@ -155,7 +155,7 @@ try:
             for fil in files:
                 Data=pd.read_csv(fil,thousands=',',sep=',')
                 Data=Data.fillna(0)
-                #st.write(Data.describe())
+                st.write(len(Data[option]))
                 try:
                     Volt.append(Data[option]/Data[option].max())
                 except:
@@ -167,8 +167,7 @@ try:
                     na.append(Data[Data.columns[int(tt)]].values[2])
                     st.write(na[-1])
                     #na.append(Data[Data.columns[2]].values[2:3])  
-            #st.write(Volt)
-            #st.write(na)      
+            st.write(Volt)
         else:
           Data=pd.read_excel(files[0],engine='openpyxl')
           ll=np.asarray(Data.columns[1:])
