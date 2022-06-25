@@ -173,14 +173,14 @@ try:
           for fil in files:
             Data=pd.read_excel(fil,engine='openpyxl')
             Data=Data.fillna(0)
-            Volt.append(Data[option].values)
+            Volt.append(Data[option]/Data[option].max())
             if((len(Data.columns))<3):
                 title = st.text_input('enter file name','dummy '+str(fil[-14:-9]))
                 na.append(title)
             else:    
                 na.append(str(fil[-14:-9])) 
         #st.write(na)    
-        #st.write(Volt)
+        st.write(Volt)
         r=st.number_input('insert number for time columns no ')
         import numpy as np
         df2 = pd.DataFrame()
