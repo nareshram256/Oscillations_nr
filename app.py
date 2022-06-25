@@ -120,7 +120,7 @@ elif(check==3):
             #bytes_data = spectra.read()
             #data = BytesIO(spectra.getbuffer())
             #st.write("filename:", uploaded_file.name)
-            f.write(spectra).getbuffer())
+            f.write((spectra).getbuffer())
     files = sorted(glob(dest+'*.csv'))
 #st.write('You selected:', option)
 
