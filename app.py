@@ -151,8 +151,8 @@ try:
                 Data=pd.read_csv(fil)
                 Volt.append(Data[option].values)
                 na.append(Data[Data.columns[2]].values[2])
-                3st.write(Volt)
-                3st.write(na)
+                #st.write(Volt)
+                #st.write(na)
                 #st.write(Data)
                 
         else:
