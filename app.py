@@ -123,7 +123,7 @@ elif(check==3):
     for spectra in spectras:
         if spectra is not None:
             #stringios = StringIO(spectra.getvalue().decode("utf-8"))
-            stringios = StringIO(spectra.getvalue().decode("utf-16-le"))
+            #stringios = StringIO(spectra.getvalue().decode("utf-16-le"))
             #dataf=pd.read_csv(stringios,thousands=',')
             bytes_data = spectra.read()
             #st.write("filename:", spectra.name)
@@ -151,6 +151,7 @@ try:
             #st.write(Data)
             ll=np.asarray(Data.columns[1:])
             option = st.selectbox('Which Oscillations plot you like?',ll)
+            tt = st.number_input('enter columns no for station_id')
             for fil in files:
                 Data=pd.read_csv(fil,thousands=',',sep=',')
                 Data=Data.fillna(0)
@@ -160,7 +161,7 @@ try:
                     title = st.text_input('enter file name','dummy '+str(fil[-14:-9]))
                     na.append(title)
                 else:    
-                    na.append(Data[Data.columns[2]].values[2])
+                    na.append(Data[Data.columns[int(tt)]].values[2])
                     #na.append(Data[Data.columns[2]].values[2:3])  
             #st.write(Volt)
             #st.write(na)      
@@ -180,7 +181,7 @@ try:
                 na.append(title)
             else:
                 na.append(Data[Data.columns[int(tt)]].values[2]) 
-        st.write(na)    
+        #st.write(na)    
         #st.write(Volt)
         r=st.number_input('insert number for time columns no ')
         import numpy as np
