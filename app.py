@@ -187,14 +187,14 @@ try:
         except:
             q=[]
             datetime_object = datetime.now()
-            for t in range (len(Volt[0])):
+            for t in range (Data.shape[1]):
                 time_change = timedelta(seconds=0.04)
                 datetime_object=datetime_object+time_change
                 q.append(datetime_object)
             df2["time"]=np.asarray(q)                                 
         
         #st.write(np.max(Volt[0]))
-        #st.write(Volt[0])
+        st.write(Volt)
         #st.write(na)
         st.write(df2.T)
         st.write(na[0])
