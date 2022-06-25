@@ -117,9 +117,10 @@ elif(check==3):
     spectras = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
     for spectra in spectras:
         with open(os.path.join(dest,str(spectra.name)),"wb") as f:
-            bytes_data = spectra.read()
+            #bytes_data = spectra.read()
+            data = io.BytesIO(spectra.getbuffer())
             #st.write("filename:", uploaded_file.name)
-            f.write(bytes_data)
+            f.write(data)
     files = sorted(glob(dest+'*.csv'))
 #st.write('You selected:', option)
 
