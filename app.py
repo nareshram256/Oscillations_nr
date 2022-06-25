@@ -180,7 +180,7 @@ try:
                 na.append(title)
             else:
                 na.append(Data[data.columns[int(tt)]].values[2]) 
-        #st.write(na)    
+        st.write(na)    
         #st.write(Volt)
         r=st.number_input('insert number for time columns no ')
         import numpy as np
