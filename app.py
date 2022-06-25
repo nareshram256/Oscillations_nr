@@ -144,6 +144,7 @@ try:
         if(".csv" in files[0]):
             #st.text(" yes i'm in")
             Data=pd.read_csv(files[0])
+            Data=Data.fillna(0)
             #st.write(Data)
             ll=np.asarray(Data.columns[1:])
             option = st.selectbox('Which Oscillations plot you like?',ll)
@@ -169,6 +170,7 @@ try:
              ll)
           for fil in files:
             Data=pd.read_excel(fil,engine='openpyxl')
+            Data=Data.fillna(0)
             Volt.append(Data[option].values)
             if((len(Data.columns))<3):
                 title = st.text_input('enter file name','dummy '+str(fil[-14:-9]))
@@ -176,20 +178,19 @@ try:
             else:    
                 na.append(str(fil[-14:-9])) 
             st.write(na)    
-        st.write(len(Volt))
+        #st.write(len(Volt))
         r=st.number_input('insert number for time columns no ')
         import numpy as np
+        df2 = pd.DataFrame()
         try:
-            df2 = pd.DataFrame()
             df2["time"] = pd.to_datetime(Data[Data.columns[int(r)]])
         except:
             q=[]
             datetime_object = datetime.now()
-            for t in range (3000):
+            for t in range (len(Volt[0])):
                 time_change = timedelta(seconds=0.04)
                 datetime_object=datetime_object+time_change
                 q.append(datetime_object)
-            df2=pd.DataFrame()
             df2["time"]=np.asarray(q)                                 
         
         #st.write(np.max(Volt[0]))
@@ -200,7 +201,7 @@ try:
         import plotly.graph_objects as go
         fig = go.Figure()
         for r in range (0,len(Volt)):
-            st.write(r,Volt[r])
+            st.write(r,Volt[r],max(Volt[r])
             df2[na[r]] = Volt[r]/np.max(Volt[r])
             #st.write(Volt[r]/np.max(Volt[r]))
             #st.write(r,np.max(Volt[r]),df2[na[r]])
