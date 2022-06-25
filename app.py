@@ -186,7 +186,8 @@ try:
             df2=pd.DataFrame()
             df2["time"]=np.asarray(q)                                 
         #st.write(len(Volt))
-        #st.write(df2.T)
+        st.write(np.max(Volt[0]))
+        st.write(Volt[0])
         import plotly.graph_objects as go
         fig = go.Figure()
         for r in range (0,(len(Volt))):
